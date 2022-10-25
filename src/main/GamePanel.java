@@ -27,14 +27,14 @@ public class GamePanel extends JPanel implements Runnable{ //Ecran de jeu
     public int nbInfirmier = 5; // MAX 10
     public int nbKine = 5; // MAX 10
     public int nbMani = 5; // MAX 10
-    public int nbNewPatient = 5; // MAX 10
-    public int nbPatientCham = 10; // MAX 10
+    public int nbNewPatient = 100; // MAX 100
+    public int nbPatientCham = 100; // MAX 100
     public int nbPrepa = 10; // MAX 10
     public int nbPsy = 10; // MAX 10
     public int nbSageF = 10; // MAX 10
     public int nbSecret = 10; // MAX 10
     public int nbTechn = 10; // MAX 10
-    public int nbVisiteur = 10; // MAX 10
+    public int nbVisiteur = 100; // MAX 100
 
 
     //FPS
