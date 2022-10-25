@@ -18,33 +18,33 @@ public class CovidChecker {
 
                 if (target[i]!=null) {
 
-                    if (entity[j].worldX / 10 == gp.medecin[i].worldX / 10 && entity[j].worldY / 10 == gp.medecin[i].worldY / 10) {
+                    if (entity[j].worldX / 10 == target[i].worldX / 10 && entity[j].worldY / 10 == target[i].worldY / 10) {
                         if (target[i].covid == 1 && k==1) {
                             entity[j].covid = 1;
                         }
 
                     }
-                    if (entity[j].worldX / 10 == gp.medecin[i].worldX / 10 && entity[j].worldY / 10 + 10 == gp.medecin[i].worldY / 10) {
-                        if (target[i].covid == 1 && k==1) {
-                            entity[j].covid = 1;
-
-                        }
-
-                    }
-                    if (entity[j].worldX / 10 == gp.medecin[i].worldX / 10 && entity[j].worldY / 10 - 10 == gp.medecin[i].worldY / 10) {
+                    if (entity[j].worldX / 10 == target[i].worldX / 10 && entity[j].worldY / 10 + 10 == target[i].worldY / 10) {
                         if (target[i].covid == 1 && k==1) {
                             entity[j].covid = 1;
 
                         }
 
                     }
-                    if (entity[j].worldX / 10 == gp.medecin[i].worldX / 10 + 10 && entity[j].worldY / 10 == gp.medecin[i].worldY / 10) {
+                    if (entity[j].worldX / 10 == target[i].worldX / 10 && entity[j].worldY / 10 - 10 == target[i].worldY / 10) {
+                        if (target[i].covid == 1 && k==1) {
+                            entity[j].covid = 1;
+
+                        }
+
+                    }
+                    if (entity[j].worldX / 10 == target[i].worldX / 10 + 10 && entity[j].worldY / 10 == target[i].worldY / 10) {
                         if (target[i].covid == 1 && k==1) {
                             entity[j].covid = 1;
                         }
 
                     }
-                    if (entity[j].worldX / 10 == gp.medecin[i].worldX / 10 - 10 && entity[j].worldY / 10 == gp.medecin[i].worldY / 10) {
+                    if (entity[j].worldX / 10 == target[i].worldX / 10 - 10 && entity[j].worldY / 10 == target[i].worldY / 10) {
                         if (target[i].covid == 1 && k==1) {
                             entity[j].covid = 1;
                         }
