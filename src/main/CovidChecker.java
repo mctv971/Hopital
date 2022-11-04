@@ -8,45 +8,44 @@ public class CovidChecker {
         this.gp =gp;
 
     }
-    public void checkCovid(Entity[] entity, Entity[] target) {
+    public void checkCovid() {
         int k = (int) (Math.random()*10/2);
-        for (int i = 0; i< target.length; i++){
-            for (int j = 0; j< target.length; j++){
+        for (int i = 0; i< Entity.toto.size(); i++){
+            for (int j = 0; j< Entity.toto.size(); j++){
                 if (j==i){
                     continue;
                 }
 
-                if (target[i]!=null) {
+                if (Entity.toto.get(i)!=null && Entity.toto.get(j)!=null) {
 
-                    if (entity[j].worldX / 10 == target[i].worldX / 10 && entity[j].worldY / 10 == target[i].worldY / 10) {
-                        if (target[i].covid == 1 && k==1) {
-                            entity[j].covid = 1;
+                    if (Entity.toto.get(j).getWorldX() / 10 == Entity.toto.get(i).getWorldX() / 10 && Entity.toto.get(j).getWorldY() / 10 == Entity.toto.get(i).getWorldY() / 10) {
+                        if (Entity.toto.get(i).getCovid() == 1 && k==1) {
+                            Entity.toto.get(j).setCovid(1);
                         }
 
                     }
-                    if (entity[j].worldX / 10 == target[i].worldX / 10 && entity[j].worldY / 10 + 10 == target[i].worldY / 10) {
-                        if (target[i].covid == 1 && k==1) {
-                            entity[j].covid = 1;
-
-                        }
-
-                    }
-                    if (entity[j].worldX / 10 == target[i].worldX / 10 && entity[j].worldY / 10 - 10 == target[i].worldY / 10) {
-                        if (target[i].covid == 1 && k==1) {
-                            entity[j].covid = 1;
+                    if (Entity.toto.get(j).getWorldX() / 10 == Entity.toto.get(i).getWorldX() / 10 && Entity.toto.get(j).getWorldY() / 10 + 10 == Entity.toto.get(i).getWorldY() / 10) {
+                        if (Entity.toto.get(i).getCovid() == 1 && k==1) {
+                            Entity.toto.get(j).setCovid(1);
 
                         }
 
                     }
-                    if (entity[j].worldX / 10 == target[i].worldX / 10 + 10 && entity[j].worldY / 10 == target[i].worldY / 10) {
-                        if (target[i].covid == 1 && k==1) {
-                            entity[j].covid = 1;
+                    if (Entity.toto.get(j).getWorldX() / 10 == Entity.toto.get(i).getWorldX() / 10 && Entity.toto.get(j).getWorldY() / 10 - 10 == Entity.toto.get(i).getWorldY() / 10) {
+                        if (Entity.toto.get(i).getCovid() == 1 && k==1) {
+                            Entity.toto.get(j).setCovid(1);
+
+                        }
+                    }
+                    if (Entity.toto.get(j).getWorldX() / 10 == Entity.toto.get(i).getWorldX() / 10 + 10 && Entity.toto.get(j).getWorldY() / 10 == Entity.toto.get(i).getWorldY() / 10) {
+                        if (Entity.toto.get(i).getCovid() == 1 && k==1) {
+                            Entity.toto.get(j).setCovid(1);
                         }
 
                     }
-                    if (entity[j].worldX / 10 == target[i].worldX / 10 - 10 && entity[j].worldY / 10 == target[i].worldY / 10) {
-                        if (target[i].covid == 1 && k==1) {
-                            entity[j].covid = 1;
+                    if (Entity.toto.get(j).getWorldX() / 10 == Entity.toto.get(i).getWorldX() / 10 - 10 && Entity.toto.get(j).getWorldY() / 10 == Entity.toto.get(i).getWorldY() / 10) {
+                        if (Entity.toto.get(i).getCovid() == 1 && k==1) {
+                            Entity.toto.get(j).setCovid(1);
                         }
 
                     }
