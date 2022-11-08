@@ -30,7 +30,6 @@ public class Entity extends Thread{
         direction = "start";
         this.start();
         i = (int) (Math.random()*10);
-        System.out.println(i);
     }
 
     public double getSpeed() {
