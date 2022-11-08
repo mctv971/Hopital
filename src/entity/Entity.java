@@ -27,8 +27,10 @@ public class Entity extends Thread{
         this.setPositionY(positionY);
         this.setCovid(covid);
         this.setSpeed(speed);
-        i = (int) (Math.random()*10);
         direction = "start";
+        this.start();
+        i = (int) (Math.random()*10);
+        System.out.println(i);
     }
 
     public double getSpeed() {

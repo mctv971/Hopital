@@ -3,6 +3,8 @@ package entity;
 public class Lieu {
     int[] lieu = new int[2];
     public int[] choixLieuMedecin(int i) {
+        System.out.println("mec");
+
         switch (i) {
             case 0:
                 lieu[0] = 32;
@@ -90,7 +92,7 @@ public class Lieu {
         return lieu;
     }
     public int[] choixLieuPatient(int i) {
-
+        System.out.println("mec");
 
         switch(i){
 
@@ -177,6 +179,7 @@ public class Lieu {
     }
 
     public int[] choixLieuVisiteur(int i) {
+        System.out.println("mec");
         switch(i){
 
             case 0:

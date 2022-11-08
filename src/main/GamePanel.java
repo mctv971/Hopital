@@ -19,10 +19,10 @@ public class GamePanel extends JPanel implements Runnable{ //Ecran de jeu
     public final int maxWorldRow = 100;
 
 
-    public int nbMedecin = 50; // MAX 100
+    public int nbMedecin = 100; // MAX 100
 
-    public int nbPatient = 50; // MAX 100
-    public int nbVisiteur = 50; // MAX 100
+    public int nbPatient = 100; // MAX 100
+    public int nbVisiteur = 100; // MAX 100
 
 
     //FPS
@@ -95,11 +95,11 @@ public class GamePanel extends JPanel implements Runnable{ //Ecran de jeu
     }
 
     public void update(){
+        System.out.println(Thread.activeCount());
         int nbCovid=0;
         int nbVariant=0;
         for (int i = 0;i<Entity.toto.size(); i++){
-            Thread thread = new Thread(Entity.toto.get(i));
-            thread.start();
+            Entity.toto.get(i).run();
             if ( Entity.toto.get(i).getCovid() == 1 || Entity.toto.get(i).getCovid()==2){
                 nbCovid ++;
             }
