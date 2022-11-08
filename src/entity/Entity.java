@@ -11,7 +11,7 @@ public class Entity extends Thread{
     public static ArrayList<Entity> toto = new ArrayList<Entity>();
     private int worldX,worldY;
     private double positionX, positionY;
-    private double speed = 0.2;
+    private double speed = 1;
     private int covid;
 
     public BufferedImage up1,up2,down1,down2,left1,left2,right1,right2;
@@ -166,31 +166,31 @@ public class Entity extends Thread{
         switch (direction) {
             case "start":
                 image = down1;
-                if (this.getCovid()==1){
+                if (this.getCovid()==1|| this.getCovid()==2){
                     image =down2;
                 }
             case "up":
                 image = up1;
-                if (this.getCovid()==1){
+                if (this.getCovid()==1 || this.getCovid()== 2){
                     image =up2;
                 }
                 break;
             case "down":
                 image = down1;
-                if (this.getCovid()==1){
+                if (this.getCovid()==1|| this.getCovid()== 2){
                     image =down2;
                 }
                 break;
             case "left":
 
                 image = left1;
-                if (this.getCovid()==1){
+                if (this.getCovid()==1|| this.getCovid()==2){
                     image =left2;
                 }
                 break;
             case "right":
                 image = right1;
-                if (this.getCovid()==1){
+                if (this.getCovid()==1|| this.getCovid()==2){
                     image =right2;
                 }
                 break;

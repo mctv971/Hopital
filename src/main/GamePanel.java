@@ -19,10 +19,10 @@ public class GamePanel extends JPanel implements Runnable{ //Ecran de jeu
     public final int maxWorldRow = 100;
 
 
-    public int nbMedecin = 20; // MAX 100
+    public int nbMedecin = 50; // MAX 100
 
-    public int nbPatient = 20; // MAX 100
-    public int nbVisiteur = 20; // MAX 100
+    public int nbPatient = 50; // MAX 100
+    public int nbVisiteur = 50; // MAX 100
 
 
     //FPS
@@ -96,18 +96,22 @@ public class GamePanel extends JPanel implements Runnable{ //Ecran de jeu
 
     public void update(){
         int nbCovid=0;
+        int nbVariant=0;
         for (int i = 0;i<Entity.toto.size(); i++){
             Thread thread = new Thread(Entity.toto.get(i));
             thread.start();
-            if ( Entity.toto.get(i).getCovid() == 1){
+            if ( Entity.toto.get(i).getCovid() == 1 || Entity.toto.get(i).getCovid()==2){
                 nbCovid ++;
+            }
+            if (Entity.toto.get(i).getCovid()==2) {
+                nbVariant++;
             }
 
         }
 
 
 
-        System.out.println("Nombre covid : "+ nbCovid + "  Nombre Non Covid :  "+ (Entity.toto.size()- nbCovid));
+        System.out.println("Nombre covid total : "+ nbCovid +" Nombre de covid variant "+nbVariant+ "  Nombre Non Covid :  "+ (Entity.toto.size()- nbCovid));
         cChecker.checkCovid();
 
     }
