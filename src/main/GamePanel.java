@@ -112,7 +112,7 @@ public class GamePanel extends JPanel implements Runnable{ //Ecran de jeu
 
 
         System.out.println("Nombre covid total : "+ nbCovid +" Nombre de covid variant "+nbVariant+ "  Nombre Non Covid :  "+ (Entity.toto.size()- nbCovid));
-        cChecker.checkCovid();
+        //cChecker.checkCovid();
 
     }
     public void paintComponent(Graphics g){ //C'est un peu comme ton stylo ou ton feutre

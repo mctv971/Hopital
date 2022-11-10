@@ -1,5 +1,8 @@
 package main;
 
+import entity.Entity;
+import entity.Medecin;
+
 import java.util.ArrayDeque;
 import java.util.Queue;
 
@@ -23,12 +26,16 @@ public class Deplacement {
             this.dist = dist;
         }
     }
-    private static boolean isValid(boolean[][] visited, int i, int j)
+    private static boolean isValid(Entity entity, boolean[][] visited, int i, int j)
     {
-        return (mapTileNum[i][j] != 9) && (mapTileNum[i][j] != 4) && (mapTileNum[i][j] != 0) && !visited[i][j];
+        if(entity.getClass().getSimpleName().equalsIgnoreCase("Medecin"))
+            return (mapTileNum[i][j] != 9) && (mapTileNum[i][j] != 4) && (mapTileNum[i][j] != 0) && (mapTileNum[i][j] != 10) && (mapTileNum[i][j] != 22) && (mapTileNum[i][j] != 33 ) && ! visited[i][j];
+        else
+            return ((mapTileNum[i][j] != 9) && (mapTileNum[i][j] != 4) && (mapTileNum[i][j] != 0) && (mapTileNum[i][j] != 10) && (mapTileNum[i][j] != 22) && (mapTileNum[i][j] != 33 ) && (mapTileNum[i][j] != 34 ) && (mapTileNum[i][j] != 35 ) && (mapTileNum[i][j] != 36 )  && (mapTileNum[i][j] != 37 )&& ! visited[i][j]);
+
     }
 
-    public int[][][] Chemin(int startX, int startY,int finishX, int finishY){
+    public int[][][] Chemin(Entity entity,int startX, int startY,int finishX, int finishY){
 
         boolean[][] deja_visite = new boolean[100][100];
         Queue<Node> q = new ArrayDeque<>();
@@ -50,7 +57,7 @@ public class Deplacement {
                 break;
             }
             for (int k = 0; k < 4; k++) {
-                if (isValid(deja_visite, startX + row[k], startY + col[k])) {
+                if (isValid(entity,deja_visite, startX + row[k], startY + col[k])) {
                     deja_visite[startX + row[k]][startY + col[k]] = true;
                     pred[startX][startY][0] = dist;
                     pred[startX][startY][1] = 1;

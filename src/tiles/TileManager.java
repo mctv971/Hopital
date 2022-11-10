@@ -124,6 +124,21 @@ public class TileManager {
             tile[32] =new Tile();
             tile[32].image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("map/porte.png"));
 
+            tile[33] =new Tile();
+            tile[33].image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("map/Mur_accueil.png"));
+
+            tile[34] =new Tile();
+            tile[34].image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("map/porte_bas_Médecin.png"));
+
+            tile[35] =new Tile();
+            tile[35].image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("map/porte_droit_Médecin.png"));
+
+            tile[36] =new Tile();
+            tile[36].image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("map/porte_gauche_Médecin.png"));
+
+            tile[37] =new Tile();
+            tile[37].image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("map/porte_haut_Médecin.png"));
+
         }catch (IOException e){
             e.printStackTrace();
         }

@@ -92,7 +92,7 @@ public class Entity extends Thread{
         int[][][] liste_depla = new int[100][100][2];
 
         if (x!=finishX || y!=finishY){
-            liste_depla = depla.Chemin(finishX, finishY,x,y);
+            liste_depla = depla.Chemin(this,finishX, finishY,x,y);
 
         }
         else{
