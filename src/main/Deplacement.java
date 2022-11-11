@@ -29,9 +29,9 @@ public class Deplacement {
     private static boolean isValid(Entity entity, boolean[][] visited, int i, int j)
     {
         if(entity.getClass().getSimpleName().equalsIgnoreCase("Medecin"))
-            return (mapTileNum[i][j] != 9) && (mapTileNum[i][j] != 4) && (mapTileNum[i][j] != 0) && (mapTileNum[i][j] != 10) && (mapTileNum[i][j] != 22) && (mapTileNum[i][j] != 33 ) && ! visited[i][j];
+            return ((mapTileNum[i][j] != 9) && (mapTileNum[i][j] != 4) && (mapTileNum[i][j] != 0) && (mapTileNum[i][j] != 22) && (mapTileNum[i][j] != 33 ) && (mapTileNum[i][j] != 8 ) && ! visited[i][j]);
         else
-            return ((mapTileNum[i][j] != 9) && (mapTileNum[i][j] != 4) && (mapTileNum[i][j] != 0) && (mapTileNum[i][j] != 10) && (mapTileNum[i][j] != 22) && (mapTileNum[i][j] != 33 ) && (mapTileNum[i][j] != 34 ) && (mapTileNum[i][j] != 35 ) && (mapTileNum[i][j] != 36 )  && (mapTileNum[i][j] != 37 )&& ! visited[i][j]);
+            return ((mapTileNum[i][j] != 9) && (mapTileNum[i][j] != 4) && (mapTileNum[i][j] != 0) && (mapTileNum[i][j] != 22) && (mapTileNum[i][j] != 33 ) && (mapTileNum[i][j] != 8 ) && (mapTileNum[i][j] != 34 ) && (mapTileNum[i][j] != 35 ) && (mapTileNum[i][j] != 36 )  && (mapTileNum[i][j] != 37 )&& ! visited[i][j]);
 
     }
 

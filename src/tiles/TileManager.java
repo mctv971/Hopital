@@ -26,7 +26,7 @@ public class TileManager {
     private void getTileImage() {
         try{
             tile[0] =new Tile();
-            tile[0].image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("map/arbre.png"));
+            tile[0].image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("map/herbe_pixels.png"));
 
             tile[1] =new Tile();
             tile[1].image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("map/route.png"));
@@ -41,7 +41,7 @@ public class TileManager {
             tile[4].image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("map/bordure.png"));
 
             tile[5] =new Tile();
-            tile[5].image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("map/carre_marron.png"));
+            tile[5].image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("map/carre_sol.png"));
 
             tile[6] =new Tile();
             tile[6].image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("map/tiroirs_droit.png"));
@@ -82,14 +82,14 @@ public class TileManager {
             tile[18] =new Tile();
             tile[18].image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("map/armoire.png"));
 
-            tile[19] =new Tile();
-            tile[19].image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("map/chaise_droit.png"));
-
             tile[20] =new Tile();
-            tile[20].image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("map/chaise_gauche.png"));
+            tile[20].image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("map/chaise_pixels_droit.png"));
+
+            tile[19] =new Tile();
+            tile[19].image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("map/chaise_pixels_gauche.png"));
 
             tile[21] =new Tile();
-            tile[21].image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("map/chaise_haut.png"));
+            tile[21].image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("map/chaise_pixels_gauche.png"));
 
             tile[22] =new Tile();
             tile[22].image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("map/image_table.png"));
@@ -124,9 +124,6 @@ public class TileManager {
             tile[32] =new Tile();
             tile[32].image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("map/porte.png"));
 
-            tile[33] =new Tile();
-            tile[33].image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("map/Mur_accueil.png"));
-
             tile[34] =new Tile();
             tile[34].image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("map/porte_bas_Médecin.png"));
 
@@ -138,6 +135,9 @@ public class TileManager {
 
             tile[37] =new Tile();
             tile[37].image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("map/porte_haut_Médecin.png"));
+
+            tile[38] =new Tile();
+            tile[38].image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("map/boy_blanc_left_1.png"));
 
         }catch (IOException e){
             e.printStackTrace();
