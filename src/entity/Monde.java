@@ -27,7 +27,7 @@ public class Monde {
 
             int i = 0;
             String text;
-            while(scanner.hasNextLine())
+            while(i<gp.nbMedecin && scanner.hasNextLine())
             {
 
                 text = scanner.nextLine();
@@ -35,9 +35,6 @@ public class Monde {
                 Entity.toto.add(new Medecin(this.gp,Integer.parseInt(med[0]),Integer.parseInt(med[1]),Integer.parseInt(med[2])));
 
                 i++;
-                if (i == gp.nbMedecin){
-                    break;
-                }
             }
             scanner.close();
         }
@@ -59,7 +56,7 @@ public class Monde {
 
             int i = 0;
             String text;
-            while(scanner.hasNextLine())
+            while(i<gp.nbPatient && scanner.hasNextLine())
             {
 
                 text = scanner.nextLine();
@@ -67,9 +64,6 @@ public class Monde {
                 Entity.toto.add(new Patient(this.gp,Integer.parseInt(med[0]),Integer.parseInt(med[1]),Integer.parseInt(med[2])));
 
                 i++;
-                if (i == gp.nbPatient){
-                    break;
-                }
             }
             scanner.close();
         }
@@ -91,7 +85,7 @@ public class Monde {
 
             int i = 0;
             String text;
-            while(scanner.hasNextLine())
+            while(i<gp.nbVisiteur && scanner.hasNextLine())
             {
 
                 text = scanner.nextLine();
@@ -99,9 +93,7 @@ public class Monde {
                 Entity.toto.add(new Visiteur(this.gp,Integer.parseInt(med[0]),Integer.parseInt(med[1]),Integer.parseInt(med[2])));
 
                 i++;
-                if (i == gp.nbVisiteur){
-                    break;
-                }
+
             }
             scanner.close();
         }

@@ -17,19 +17,22 @@ public class GamePanel extends JPanel implements Runnable{ //Ecran de jeu
     // WORLD SETTINGS
     public final int maxWorldCol = 100;
     public final int maxWorldRow = 100;
+    public int nbMedecin = 10; // MAX 100
+    public int nbPatient = 20; // MAX 100
+    public int nbVisiteur = 0; // MAX 100
 
 
-    public int nbMedecin = 100; // MAX 100
-
-    public int nbPatient = 100; // MAX 100
-    public int nbVisiteur = 100; // MAX 100
-
+    public int[][] nbChambrePatient = new int[33][2];
+    public int[] nbChambreRea = new int[14];
+    public int[] nbLitMedecin = new int[86];
+    public int[] nbSiegeVisiteur = new int[5];
 
     //FPS
-    int FPS = 10;
+    int FPS = 250;
     TileManager tileM = new TileManager(this);
     public CovidChecker cChecker = new CovidChecker(this);
     Thread gameThread; //Il gère le temps dans le jeu, et donc fait tourner le programme
+
     public Deplacement depla = new Deplacement(this);
     Monde monde = new Monde(this);
 
@@ -59,7 +62,6 @@ public class GamePanel extends JPanel implements Runnable{ //Ecran de jeu
 
         double drawInterval = 1000000000/FPS; //0.01666 sec
         double nextDrawTime = System.nanoTime() + drawInterval;
-
 
         while(gameThread !=null){ //Boucle qui tourne sans cesse
 
@@ -95,7 +97,6 @@ public class GamePanel extends JPanel implements Runnable{ //Ecran de jeu
     }
 
     public void update(){
-        System.out.println(Thread.activeCount());
         int nbCovid=0;
         int nbVariant=0;
         for (int i = 0;i<Entity.toto.size(); i++){
@@ -106,13 +107,9 @@ public class GamePanel extends JPanel implements Runnable{ //Ecran de jeu
             if (Entity.toto.get(i).getCovid()==2) {
                 nbVariant++;
             }
-
         }
-
-
-
-        System.out.println("Nombre covid total : "+ nbCovid +" Nombre de covid variant "+nbVariant+ "  Nombre Non Covid :  "+ (Entity.toto.size()- nbCovid));
-        //cChecker.checkCovid();
+        //System.out.println("Nombre covid total : "+ nbCovid +" Nombre de covid variant "+nbVariant+ "  Nombre Non Covid :  "+ (Entity.toto.size()- nbCovid));
+        cChecker.checkCovid();
 
     }
     public void paintComponent(Graphics g){ //C'est un peu comme ton stylo ou ton feutre

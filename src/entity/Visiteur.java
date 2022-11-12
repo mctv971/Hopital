@@ -15,6 +15,7 @@ public class Visiteur extends Entity{
     public Visiteur(GamePanel gp, int positionX, int positionY, int covid){
         super(gp,positionX,positionY,covid);
         getPlayerImage();
+
     }
 
     public void getPlayerImage() {
@@ -35,10 +36,11 @@ public class Visiteur extends Entity{
 
 
     public int[] choixLieu() {
+        System.out.println("Je degage");
         int [] choix = new int[2];
 
-        choix[0] = lieu.choixLieuVisiteur(i)[0];
-        choix[1] = lieu.choixLieuVisiteur(i)[1];
+        choix[0] = lieu.chambrePatient(i)[0];
+        choix[1] = lieu.chambrePatient(i)[1];
         return choix;
     }
 }

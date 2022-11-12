@@ -9,19 +9,28 @@ import java.util.ArrayList;
 
 public class Entity extends Thread{
     public static ArrayList<Entity> toto = new ArrayList<Entity>();
+    public int probleme;
     private int worldX,worldY;
     private double positionX, positionY;
-    private double speed = 1;
+    private double speed = 0.1;
     private int covid;
 
     public BufferedImage up1,up2,down1,down2,left1,left2,right1,right2;
     private String direction;
     GamePanel gp;
     Deplacement depla = new Deplacement(gp);
-    int i;
+    public int i;
+    double j = 0;
+    int finishX;
+    int finishY;
+    boolean arrive;
+    int[][][] liste_depla;
+    public boolean pause = false;
+    public int compteur_stop =0;
 
 
-    public Entity(GamePanel gp, double positionX, double positionY, int covid) {
+
+    public Entity(GamePanel gp, int positionX, int positionY, int covid) {
         this.gp = gp;
         this.setPositionX(positionX);
         this.setPositionY(positionY);
@@ -29,7 +38,19 @@ public class Entity extends Thread{
         this.setSpeed(speed);
         direction = "start";
         this.start();
-        i = (int) (Math.random()*10);
+        i =0;
+        probleme = 1;
+        arrive = true;
+        if(this.getClass().getSimpleName().equalsIgnoreCase("Medecin")){
+            finishX = 47; finishY = 55;
+        }
+        else if (this.getClass().getSimpleName().equalsIgnoreCase("Patient")){
+            finishX = 32; finishY = 43;
+        }
+        else {
+            finishX = 32; finishY = 47;
+        }
+
     }
 
     public double getSpeed() {
@@ -53,7 +74,7 @@ public class Entity extends Thread{
         return positionX;
     }
 
-    public void setPositionX(double positionX) {
+    public void setPositionX(int positionX) {
         this.positionX = positionX;
     }
 
@@ -61,7 +82,7 @@ public class Entity extends Thread{
         return positionY;
     }
 
-    public void setPositionY(double positionY) {
+    public void setPositionY(int positionY) {
         this.positionY = positionY;
     }
 
@@ -80,51 +101,70 @@ public class Entity extends Thread{
     public String getDirection() {
         return direction;
     }
-    public int[] choixLieu(){
+    public int[] choixLieu() {
         int[] choix = new int[2];
         return choix;
     }
-    public void getChoixdepla() throws InterruptedException {
+    public void getChoixdepla() {
         int x = (int)this.getPositionX();
         int y = (int)this.getPositionY();
-        int finishX = choixLieu()[0];
-        int finishY = choixLieu()[1];
-        int[][][] liste_depla = new int[100][100][2];
+        if (arrive){
 
-        if (x!=finishX || y!=finishY){
+
+            liste_depla = new int[100][100][2];
+
             liste_depla = depla.Chemin(this,finishX, finishY,x,y);
+            arrive = false;
 
         }
-        else{
-            i = (int) (Math.random()*10);
-        }
 
 
-        int d = liste_depla[x][y][0];
+        if (x==finishX && y==finishY){
 
-        if (liste_depla[x][y+1][0] == d-1 && liste_depla[x][y+1][1] ==1 ){
-            setDirection("down");
-        }
-        else if(liste_depla[x][y-1][0] == d-1 && liste_depla[x][y-1][1] ==1){
-            setDirection("up");
+
+            int[] choix = choixLieu();
+            finishX = choix[0];
+            finishY = choix[1];
+            arrive =true;
+            setDirection("start");
 
         }
-        else if(liste_depla[x-1][y][0] == d-1 && liste_depla[x-1][y][1] ==1){
-            setDirection("left");
 
-        }
-        else if(liste_depla[x+1][y][0] == d-1 && liste_depla[x+1][y][1] ==1) {
-            setDirection("right");
 
+
+
+
+        if (!arrive) {
+
+            int d = liste_depla[x][y][0];
+
+            if (liste_depla[x][y+1][0] == d-1 && liste_depla[x][y+1][1] ==1 ){
+                setDirection("down");
+            }
+            else if(liste_depla[x][y-1][0] == d-1 && liste_depla[x][y-1][1] ==1){
+                setDirection("up");
+
+            }
+            else if(liste_depla[x-1][y][0] == d-1 && liste_depla[x-1][y][1] ==1){
+                setDirection("left");
+
+            }
+            else if(liste_depla[x+1][y][0] == d-1 && liste_depla[x+1][y][1] ==1) {
+                setDirection("right");
+
+            }
         }
     }
 
     public void run() {
         try {
-            setDirection("start");
-
             // modification position player
-            this.getChoixdepla();
+            if (j == 0 && !pause) {
+                this.getChoixdepla();
+            }
+            if (pause){
+                direction = "start";
+            }
 
 
             switch (direction){
@@ -140,6 +180,7 @@ public class Entity extends Thread{
                     positionY += speed;
 
 
+
                     break;
                 case "left":
                     positionX -= speed;
@@ -147,14 +188,24 @@ public class Entity extends Thread{
 
                     break;
                 case "right":
+
                     positionX += speed;
 
                     break;
             }
+            j += speed;
+
+            if ((int) j==1){
+                positionX = Math.round(positionX);
+                positionY = Math.round(positionY);
+                j = 0;
+            }
+
             int k=(int) (Math.random()*30);
             if (k == 1){
                 setCovid(0);
             }
+            pause = false;
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
