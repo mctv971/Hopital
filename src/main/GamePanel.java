@@ -28,7 +28,7 @@ public class GamePanel extends JPanel implements Runnable{ //Ecran de jeu
     public int[] nbSiegeVisiteur = new int[5];
 
     //FPS
-    int FPS = 250;
+    int FPS = 60;
     TileManager tileM = new TileManager(this);
     public CovidChecker cChecker = new CovidChecker(this);
     Thread gameThread; //Il gère le temps dans le jeu, et donc fait tourner le programme
