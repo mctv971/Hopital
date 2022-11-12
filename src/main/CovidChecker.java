@@ -69,7 +69,7 @@ public class CovidChecker {
                                     if (gp.nbChambrePatient[patient.i][1] == 1 && c6){
                                         if (patient.compteur_stop == 10){
                                             patient.compteur_stop =0;
-                                            int n = (int)Math.random()*100;
+                                            int n = (int)Math.random()*50;
                                             if (n== 7){
                                                 patient.probleme = 4;
                                                 medecin.probleme = 4;
