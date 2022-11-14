@@ -57,6 +57,14 @@ public class Main {
         gamePanel.sliderCovid.setMajorTickSpacing(25);
         gamePanel.sliderCovid.setMinorTickSpacing(10);
 
+        p.add(gamePanel.slider4);
+        p.add(gamePanel.label7);
+        gamePanel.slider4.setPaintTrack(true);
+        gamePanel.slider4.setPaintTicks(true);
+        gamePanel.slider4.setPaintLabels(true);
+        gamePanel.slider4.setMajorTickSpacing(50);
+        gamePanel.slider4.setMinorTickSpacing(25);
+
         p.add(btn);
 
         windowSlider.add(p);
@@ -70,6 +78,7 @@ public class Main {
         gamePanel.label4.setText("le nombre de medecin est : " + gamePanel.slider.getValue());
         gamePanel.label5.setText("le nombre patient est: " + gamePanel.slider2.getValue());
         gamePanel.label6.setText("le nombre visiteur est:  " + gamePanel.slider3.getValue());
+        gamePanel.label7.setText("Le nombre de FPS (vitesse) est :  " + gamePanel.slider4.getValue());
         gamePanel.labelCovid.setText("le Covid de base est:  " + gamePanel.slider3.getValue());
         windowSlider.setSize(250, 400);
         window.setSize(1000,1000);
@@ -106,6 +115,13 @@ public class Main {
             @Override
             public void stateChanged(ChangeEvent e) {
                 gamePanel.label6.setText("le nombre visiteur  est : " + gamePanel.slider3.getValue());
+
+            }
+        });
+        gamePanel.slider4.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                gamePanel.label7.setText("Le nombre de FPS (vitesse) est :  " + gamePanel.slider4.getValue());
 
             }
         });

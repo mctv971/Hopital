@@ -7,6 +7,8 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
+// CODE COULEUR PERSO : Bleu --> Medecin; Blanc --> Visiteur ; Noir --> Patient  ; SI COVID : Fond vert.
+
 
 
 public class Entity extends Thread{

@@ -14,12 +14,15 @@ public class GamePanel extends JPanel implements Runnable{ //Ecran de jeu
     public JLabel label4 = new JLabel();
     public JLabel label5 = new JLabel();
     public JLabel label6 = new JLabel();
+    public JLabel label7 = new JLabel();
     public JLabel labelCovid = new JLabel();
     public JLabel labelErr= new JLabel();
 
     public JSlider slider = new JSlider(0,100,15);
     public JSlider slider2 = new JSlider(0,100,15);
     public JSlider slider3 = new JSlider(0,100,15);
+
+    public JSlider slider4 = new JSlider(0,300,60);
     public JSlider sliderCovid = new JSlider(0,100,15);
 
     // Parametre d'affichage
@@ -42,7 +45,7 @@ public class GamePanel extends JPanel implements Runnable{ //Ecran de jeu
     public int[] nbSiegeVisiteur = new int[67];
 
     //FPS
-    int FPS = 200;
+    int FPS;
     TileManager tileM = new TileManager(this);
     public StatutChecker cChecker = new StatutChecker(this);
     Thread gameThread; //Il gère le temps dans le jeu, et donc fait tourner le programme
@@ -67,6 +70,7 @@ public class GamePanel extends JPanel implements Runnable{ //Ecran de jeu
         nbMedecin = slider.getValue(); // MAX 100
         nbPatient = slider2.getValue(); //MAX 100
         nbVisiteur = slider3.getValue(); //MAX 100
+        FPS = slider4.getValue();
         monde.setMedecin();
         monde.setPatient();
         monde.setVisiteur();

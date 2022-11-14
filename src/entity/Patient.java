@@ -23,13 +23,13 @@ public class Patient extends Entity{
     public void getPlayerImage() {
         try {
             up1= ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("player/patient/boy_up_1.png")));
-            up2= ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("player/covid/boy_up_2.png")));
+            up2= ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("player/covid/Covid_patient_boy_up_1.png")));
             down1= ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("player/patient/boy_down_1.png")));
-            down2= ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("player/covid/boy_down_2.png")));
+            down2= ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("player/covid/Covid_patient_boy_down_1.png")));
             left1= ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("player/patient/boy_left_1.png")));
-            left2= ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("player/covid/boy_left_2.png")));
+            left2= ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("player/covid/Covid_patient_boy_left_1.png")));
             right1= ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("player/patient/boy_right_1.png")));
-            right2= ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("player/covid/boy_right_2.png")));
+            right2= ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("player/covid/Covid_patient_boy_right_1.png")));
 
         } catch (IOException e) {
             e.printStackTrace();
