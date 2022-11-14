@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class Entity extends Thread{
     public static ArrayList<Entity> toto = new ArrayList<Entity>();
-    public int probleme;
+    public int statut;
     private int worldX,worldY;
     private double positionX, positionY;
     private double speed = 0.1;
@@ -23,9 +23,9 @@ public class Entity extends Thread{
     Deplacement depla = new Deplacement(gp);
     public int i;
     double j = 0;
-    int finishX;
-    int finishY;
-    boolean arrive;
+    public int finishX;
+    public int finishY;
+    public boolean arrive;
     int[][][] liste_depla;
     public boolean pause = false;
     public int compteur_stop =0;
@@ -45,8 +45,11 @@ public class Entity extends Thread{
         direction = "start";
         this.start();
         i =0;
-        probleme = 1;
+        statut = 1;
         arrive = true;
+        
+        // COORDONNEES DE DEPART
+        
         if(this.getClass().getSimpleName().equalsIgnoreCase("Medecin")){
             finishX = 47; finishY = 55;
         }
@@ -111,10 +114,10 @@ public class Entity extends Thread{
         int[] choix = new int[2];
         return choix;
     }
-    public void getChoixdepla() {
+    public void getChoixdepla() { // DONNE LA DIRECTION QUE DOIT PRENDRE LE PERSONNAGE
         int x = (int)this.getPositionX();
         int y = (int)this.getPositionY();
-        if (arrive && finishX != 0 && finishY!=0 ){
+        if (arrive && finishX != 0 && finishY!=0 ){ // CALCUL UN NOUVEL ITINERAIRE SI IL CHANGE DE STATUT
 
 
             liste_depla = new int[100][100][2];
@@ -126,7 +129,7 @@ public class Entity extends Thread{
         }
 
 
-        if (x==finishX && y==finishY){
+        if (x==finishX && y==finishY){ // ARRIVE DONC NOUVEAU LIEU
 
 
             int[] choix = choixLieu();
@@ -141,7 +144,7 @@ public class Entity extends Thread{
 
 
 
-        if (!arrive) {
+        if (!arrive) { // CHOIX DE LA DIRECTION
 
             int d = liste_depla[x][y][0];
 
@@ -200,6 +203,7 @@ public class Entity extends Thread{
             if (j == 0 && !pause) {
                 this.getChoixdepla();
             }
+            // EN CAS DE BUG, SOLUTION DE DEBLOQUAGE
             if (x_erreur == (int)this.getPositionX() && y_erreur == (int)this.getPositionY()){
                 compteur_erreur +=1;
 
@@ -214,6 +218,8 @@ public class Entity extends Thread{
             if (pause){
                 direction = "start";
             }
+            
+            // MODIFIE LA POSITION DU JOUEUR
 
 
             switch (direction){
@@ -244,7 +250,8 @@ public class Entity extends Thread{
             }
             j += speed;
 
-            if ((int) j==1){
+            if ((int) j==1){  // PERMET DE DEPLACER LE JOUEUR SUIVANT LES PIXELS
+                positionX = Math.round(positionX);
                 positionX = Math.round(positionX);
                 positionY = Math.round(positionY);
                 j = 0;

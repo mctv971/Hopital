@@ -8,18 +8,32 @@ import java.awt.*;
 
 
 public class GamePanel extends JPanel implements Runnable{ //Ecran de jeu
+    public JLabel label = new JLabel();
+    public JLabel label2 = new JLabel();
+    public JLabel label3 = new JLabel();
+    public JLabel label4 = new JLabel();
+    public JLabel label5 = new JLabel();
+    public JLabel label6 = new JLabel();
+    public JLabel labelCovid = new JLabel();
+    public JLabel labelErr= new JLabel();
+
+    public JSlider slider = new JSlider(0,100,15);
+    public JSlider slider2 = new JSlider(0,100,15);
+    public JSlider slider3 = new JSlider(0,100,15);
+    public JSlider sliderCovid = new JSlider(0,100,15);
 
     // Parametre d'affichage
     public final int tileSize = 10;
 
     public final int screenWidth = 1000;
-    public final int screenHeight = 1000;
+    public final int screenHeight = 820;
     // WORLD SETTINGS
     public final int maxWorldCol = 100;
-    public final int maxWorldRow = 100;
-    public int nbMedecin = 30; // MAX 100
-    public int nbPatient = 30; // MAX 100
-    public int nbVisiteur = 40; // MAX 100
+    public final int maxWorldRow = 82;
+    public int nbMedecin ;
+    public int nbPatient;
+    public int nbVisiteur; // MAX 100
+    public int nbCovidbase =0;
 
 
     public int[][] nbChambrePatient = new int[33][2];
@@ -28,7 +42,7 @@ public class GamePanel extends JPanel implements Runnable{ //Ecran de jeu
     public int[] nbSiegeVisiteur = new int[67];
 
     //FPS
-    int FPS = 70;
+    int FPS = 200;
     TileManager tileM = new TileManager(this);
     public StatutChecker cChecker = new StatutChecker(this);
     Thread gameThread; //Il gère le temps dans le jeu, et donc fait tourner le programme
@@ -50,6 +64,9 @@ public class GamePanel extends JPanel implements Runnable{ //Ecran de jeu
 
     }
     public void setupGame(){
+        nbMedecin = slider.getValue(); // MAX 100
+        nbPatient = slider2.getValue(); //MAX 100
+        nbVisiteur = slider3.getValue(); //MAX 100
         monde.setMedecin();
         monde.setPatient();
         monde.setVisiteur();
@@ -107,7 +124,11 @@ public class GamePanel extends JPanel implements Runnable{ //Ecran de jeu
             if (Entity.toto.get(i).getCovid()==2) {
                 nbVariant++;
             }
+            label.setText("Nombre covid total : "+ nbCovid);
+            label2.setText(" Nombre de covid variant "+nbVariant);
+            label3.setText("  Nombre Non Covid :  "+ (Entity.toto.size()- nbCovid));
         }
+
         //System.out.println("Nombre covid total : "+ nbCovid +" Nombre de covid variant "+nbVariant+ "  Nombre Non Covid :  "+ (Entity.toto.size()- nbCovid));
         cChecker.checkStatut();
 

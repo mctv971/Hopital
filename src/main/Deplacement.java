@@ -26,6 +26,7 @@ public class Deplacement {
             this.dist = dist;
         }
     }
+    // PERMET DE REGARDER SI IL PEUT OU PAS ALLER SUR TEL CASE
     private static boolean isValid(Entity entity, boolean[][] visited, int i, int j)
     {
         if(entity.getClass().getSimpleName().equalsIgnoreCase("Medecin"))
@@ -42,6 +43,8 @@ public class Deplacement {
             return ((mapTileNum[i][j] != 9) && (mapTileNum[i][j] != 4) && (mapTileNum[i][j] != 0) && (mapTileNum[i][j] != 22) && (mapTileNum[i][j] != 33 ) && (mapTileNum[i][j] != 8 ) && (mapTileNum[i][j] != 34 ) && (mapTileNum[i][j] != 35 ) && (mapTileNum[i][j] != 36 )  && (mapTileNum[i][j] != 37 )&& (mapTileNum[i][j] != 19 ) && (mapTileNum[i][j] != 20 ) && (mapTileNum[i][j] != 21 ));
 
     }
+
+    // ALGORITHME DE LEE REVISITE AFIN DE GARDER LE PARCOURS EN MEMOIRE
 
     public int[][][] Chemin(Entity entity,int startX, int startY,int finishX, int finishY){
 

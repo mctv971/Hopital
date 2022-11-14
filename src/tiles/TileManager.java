@@ -139,6 +139,7 @@ public class TileManager {
             tile[38] =new Tile();
             tile[38].image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("map/boy_blanc_left_1.png"));
 
+
         }catch (IOException e){
             e.printStackTrace();
         }

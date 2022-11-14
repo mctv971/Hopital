@@ -13,7 +13,7 @@ public class Patient extends Entity{
 
     Lieu lieu = new Lieu();
     int[] choix = new int[8];
-    //0 probleme, 1 en cours de traitement,2 en cours de guerison 3. rea, 4, mort, 5 guéris
+    //0 statut, 1 en cours de traitement,2 en cours de guerison 3. rea, 4, mort, 5 guéris
     public Patient(GamePanel gp, int positionX, int positionY, int covid){
         super(gp,positionX,positionY,covid);
         getPlayerImage();
@@ -39,17 +39,24 @@ public class Patient extends Entity{
 
     public int[] choixLieu() {
 
+        // statut 1 : Pris en charge --> direction la chambre
+        // statut 2 : Dans la chambre --> Soit guéri, soit réa
+        // statut 3: Si Réa, direction la chambre
+        // statut 5 :Part dans l'hopital
+        // statut 7 : Reviens comme un nouveau patient
 
 
 
-        if (probleme == 3){
+
+
+        if (statut == 3){
             choix [0] = lieu.chambreRea(i)[0];  // REA
             choix [1] = lieu.chambreRea(i)[1];
   // REA
             return choix;
 
         }
-        if (probleme == 1) {
+        if (statut == 1) {
             boolean trouve = false;
 
             int j = 0;
@@ -59,7 +66,7 @@ public class Patient extends Entity{
                     trouve = true;
                     gp.nbChambrePatient[j][0] = 1;
                     i = j;
-                    probleme =2;
+                    statut =2;
                     choix [0] = lieu.chambrePatient(i)[0];
                     choix [1] = lieu.chambrePatient(i)[1];
                     return choix;
@@ -70,22 +77,22 @@ public class Patient extends Entity{
 
 
         }
-        if (probleme == 5){
+        if (statut == 5){
             choix [0] = lieu.sorti()[0];  // SORTI
             choix [1] = lieu.sorti()[1];  // SORTI
-            probleme =8;
+            statut =8;
             return choix;
         }
 
-        if (probleme == 7){
+        if (statut == 7){
             gp.nbChambreRea[i] = 0;
             choix [0] = lieu.sorti()[0];  // SORTI
             choix [1] = lieu.sorti()[1];
-            probleme =8;
+            statut =8;
             return choix;
         }
-        if (probleme == 8){
-            probleme =1;
+        if (statut == 8){
+            statut =1;
             setPositionX(5);
             setPositionY(79);
             choix[0] = lieu.accueil()[0];

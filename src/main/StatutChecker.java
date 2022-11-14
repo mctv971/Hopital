@@ -48,6 +48,7 @@ public class StatutChecker {
                     Entity visiteur = Entity.toto.get(j);
                     Entity perso1 = Entity.toto.get(i);
                     Entity perso2 = Entity.toto.get(j);
+
                     if (c1 || c2 || c3 || c4 || c5 || c10 || c11 || c12 || c13){
                         if ((c7 && c8) || (c8 && c9) || (c7 && c72) ){
                             if (patient.getCovid() == 1 && k==1) {
@@ -71,7 +72,7 @@ public class StatutChecker {
 
 
 
-                        if (c7 && patient.probleme == 2 ){
+                        if (c7 && patient.statut == 2 ){
 
 
 
@@ -79,7 +80,7 @@ public class StatutChecker {
                         }
 
                         if (c6 && c7){
-                            if (patient.probleme == 2 && medecin.probleme == 2){
+                            if (patient.statut == 2 && medecin.statut == 2){
                                 if (patient.getPositionX() == lieu.chambrePatient(patient.i)[0]
                                         && medecin.getPositionX() == lieu.chambrePatient(patient.i)[2]){
                                     if (gp.nbChambrePatient[patient.i][1] == 1 && c6){
@@ -87,13 +88,13 @@ public class StatutChecker {
                                             patient.compteur_stop =0;
                                             int n = (int)Math.random()*50;
                                             if (n== 7){
-                                                patient.probleme = 4;
-                                                medecin.probleme = 4;
+                                                patient.statut = 4;
+                                                medecin.statut = 4;
                                             }
                                             else{
 
-                                                patient.probleme = 5;
-                                                medecin.probleme = 1;
+                                                patient.statut = 5;
+                                                medecin.statut = 1;
                                                 gp.nbChambrePatient[patient.i][0] = 0;
                                                 gp.nbChambrePatient[patient.i][1] = 0;
                                             }
@@ -108,7 +109,7 @@ public class StatutChecker {
                                 }
                             }
 
-                            if (patient.probleme ==3 && medecin.probleme == 3 ){
+                            if (patient.statut ==3 && medecin.statut == 3 ){
 
 
                                 if (patient.getPositionX() == lieu.chambreRea(patient.i)[0]
@@ -116,8 +117,8 @@ public class StatutChecker {
 
                                     if (patient.compteur_stop == 10){
                                         patient.compteur_stop =0;
-                                        patient.probleme = 7;
-                                        medecin.probleme =1;
+                                        patient.statut = 7;
+                                        medecin.statut =1;
 
                                     }
                                     patient.compteur_stop +=1;
@@ -129,7 +130,7 @@ public class StatutChecker {
 
 
                             }
-                            if (patient.probleme == 4 && medecin.probleme == 4) {
+                            if (patient.statut == 4 && medecin.statut == 4) {
                                 System.out.println("test");
 
                                 int m = 0;
@@ -140,8 +141,8 @@ public class StatutChecker {
                                         gp.nbChambreRea[m] = 1;
                                         patient.i = m;
                                         medecin.i = m;
-                                        medecin.probleme = 3;
-                                        patient.probleme =3;
+                                        medecin.statut = 3;
+                                        patient.statut =3;
                                     }
                                     m++;
                                 }

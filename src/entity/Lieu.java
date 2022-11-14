@@ -1,6 +1,6 @@
 package entity;
 
-import static tiles.TileManager.mapTileNum;
+
 
 public class Lieu {
     int[] lieu = new int[8];

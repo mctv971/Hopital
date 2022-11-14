@@ -7,7 +7,7 @@ import javax.imageio.ImageIO;
 
 import java.io.IOException;
 import java.util.Objects;
-import static tiles.TileManager.mapTileNum;
+
 
 public class Visiteur extends Entity{
 
@@ -37,7 +37,12 @@ public class Visiteur extends Entity{
 
 
     public int[] choixLieu() {
-        if (probleme == 1) {
+        // statut 1 : Va à l'accueil et demande la chambre du patient, s'asseoit à l'accueil si indisponible
+        // statut 2 : Si le médecin arrive, va au siège visiteur de la chambre
+        // statut 5 : Patiente
+        // statut 3 : Part de l'hopital
+        // statut 4 : Reviens comme un nouveau visiteur
+        if (statut == 1) {
 
             int j = 0;
             while (j<gp.nbChambrePatient.length){
@@ -52,7 +57,7 @@ public class Visiteur extends Entity{
                         }
                         gp.nbSiegeVisiteur[j] = 1;
                         i = j;
-                        probleme =2;
+                        statut =2;
                         choix [0] = lieu.chambrePatient(i)[4];
                         choix [1] = lieu.chambrePatient(i)[5];
                         return choix;
@@ -81,33 +86,33 @@ public class Visiteur extends Entity{
 
 
         }
-        if (probleme == 2){
+        if (statut == 2){
             if (gp.nbChambrePatient[i][1] == 1){
                 choix [0] = lieu.chambrePatient(i)[6];
                 choix [1] = lieu.chambrePatient(i)[7];
-                probleme =5;
+                statut =5;
                 return choix;
             }
 
         }
-        if (probleme == 3){
+        if (statut == 3){
             gp.nbSiegeVisiteur[i] = 0;
             choix [0] = lieu.sorti()[0];  // SORTI
             choix [1] = lieu.sorti()[1];
-            probleme =4;
+            statut =4;
             return choix;
         }
-        if (probleme == 4){
-            probleme =1;
+        if (statut == 4){
+            statut =1;
             setPositionX(5);
             setPositionY(79);
             choix[0] = lieu.accueil()[2];
             choix[1] = lieu.accueil()[3];
             return choix;
         }
-        if (probleme == 5){
+        if (statut == 5){
             if (compteur_stop == 10){
-                probleme =3;
+                statut =3;
                 compteur_stop =0;
             }
             else compteur_stop += 1;

@@ -41,13 +41,17 @@ public class Medecin extends Entity{
 
 
     public int[] choixLieu() {
-        //System.out.println("lieu medecin c"+choix[0]+"h"+choix[1]+" probleme :" + probleme);
+        //System.out.println("lieu medecin c"+choix[0]+"h"+choix[1]+" statut :" + statut);
+
+        // statut 1 : Cherche un patient ou va en salle de repos le cas contraire
+        // statut 2 : Opère
+        // statut 3 : Va en réa s'il n'est pas guéri
+
+
         int n =0;
         boolean trouve = false;
-        if (compteur_guerri == 3 && probleme == 1){
-            System.out.println("coucou");
+        if (compteur_guerri == 3 && statut == 1){
             while (!trouve && n<gp.nbLitMedecin.length){
-                System.out.println("salut");
                 if (gp.nbLitMedecin[n] == 0){
                     trouve = true;
                     assis = true;
@@ -55,14 +59,13 @@ public class Medecin extends Entity{
                     gp.nbLitMedecin[n] = 1;
                     choix [0] = lieu.siegeMedecin(i)[0];
                     choix [1] = lieu.siegeMedecin(i)[1];
-                    mapTileNum[choix [0]][choix [1]] = 45;
 
                 }
                 n++;
             }
             compteur_guerri =0;
         }
-        if(probleme == 1){
+        if(statut == 1){
             while (!trouve && n<gp.nbChambrePatient.length){
                 if (gp.nbChambrePatient[n][0] == 1 && gp.nbChambrePatient[n][1] == 0){
                     trouve = true;
@@ -71,7 +74,7 @@ public class Medecin extends Entity{
                     i =n;
                     assis = false;
                     gp.nbChambrePatient[i][1] = 1;
-                    probleme = 2;
+                    statut = 2;
                     choix [0] = lieu.chambrePatient(i)[2];
                     choix [1] = lieu.chambrePatient(i)[3];
                     compteur_guerri +=1;
@@ -98,7 +101,7 @@ public class Medecin extends Entity{
             }
 
         }
-        if (probleme == 3){
+        if (statut == 3){
             choix [0] = lieu.chambreRea(i)[2];  // REA
             choix [1] = lieu.chambreRea(i)[3];  // REA
 
