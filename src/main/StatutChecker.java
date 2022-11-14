@@ -3,18 +3,20 @@ package main;
 import entity.Entity;
 import entity.Lieu;
 
-public class CovidChecker {
+public class StatutChecker {
     GamePanel gp;
     Lieu lieu = new Lieu();
-    public CovidChecker(GamePanel gp){
+    public StatutChecker(GamePanel gp){
         this.gp =gp;
 
     }
     Deplacement depla;
-    public void checkCovid() {
+    public void checkStatut() {
 
-        int k = (int) (Math.random()*10/2);
+        int k = (int) (Math.random()*10);
+        int c = (int) (Math.random()*100);
         for (int i = 0; i< Entity.toto.size(); i++){
+
             for (int j = 0; j< Entity.toto.size(); j++){
                 if (j==i){
                     continue;
@@ -31,29 +33,43 @@ public class CovidChecker {
                     boolean c3 = positionx1 == positionx2 && positiony1 - 1 == positiony2 ;
                     boolean c4 = positionx1 == positionx2 + 1 && positiony1 == positiony2;
                     boolean c5 =positionx1 == positionx2 - 1 && positiony1 == positiony2;
+                    boolean c10 = positionx1 == positionx2+1 && positiony1 == positiony2+1;
+                    boolean c11= positionx1 == positionx2 -1 && positiony1  == positiony2 -1;
+                    boolean c12 = positionx1 == positionx2 +1 && positiony1 == positiony2 -1;
+                    boolean c13 = positionx1 == positionx2 - 1 && positiony1 == positiony2 +1 ;
 
                     boolean c6 = Entity.toto.get(j).getClass().getSimpleName().equalsIgnoreCase("Medecin");
                     boolean c7 = Entity.toto.get(i).getClass().getSimpleName().equalsIgnoreCase("Patient");
+                    boolean c72 = Entity.toto.get(j).getClass().getSimpleName().equalsIgnoreCase("Patient");
+                    boolean c8 = Entity.toto.get(j).getClass().getSimpleName().equalsIgnoreCase("Visiteur");
+                    boolean c9 = Entity.toto.get(i).getClass().getSimpleName().equalsIgnoreCase("Visiteur");
                     Entity patient = Entity.toto.get(i);
                     Entity medecin = Entity.toto.get(j);
+                    Entity visiteur = Entity.toto.get(j);
                     Entity perso1 = Entity.toto.get(i);
                     Entity perso2 = Entity.toto.get(j);
+                    if (c1 || c2 || c3 || c4 || c5 || c10 || c11 || c12 || c13){
+                        if ((c7 && c8) || (c8 && c9) || (c7 && c72) ){
+                            if (patient.getCovid() == 1 && k==1) {
+                                visiteur.setCovid(1);
+                            }
 
-
-
-
-
-
-                    if (c1 || c2 || c3 || c4 || c5) {
-
-
-
-                        if (Entity.toto.get(i).getCovid() == 1 && k==1) {
-                            Entity.toto.get(j).setCovid(1);
                         }
-                        else if ( (k==1 || k==2) && Entity.toto.get(i).getCovid() == 2) {
-                            Entity.toto.get(j).setCovid(2);
+                        if (c6 &&(c7 || c9)){
+                            if (patient.getCovid() == 1 && c==1) {
+                                medecin.setCovid(1);
+                            }
                         }
+                    }
+
+
+
+
+
+
+                    if (c1 || c2 || c3 || c4 || c5 ) {
+
+
 
                         if (c7 && patient.probleme == 2 ){
 
@@ -137,7 +153,7 @@ public class CovidChecker {
 
 
 
-                        if (!perso1.pause && !perso2.pause) {
+                        if (!perso1.pause && !perso2.pause &&( !perso1.assis||  !perso2.assis) ) {
                             if (perso1.getDirection() == perso2.getDirection() || perso1.getDirection() == "start" || perso2.getDirection() == "start" ){
                                 perso1.pause = true;
                                 perso2.pause =false;
@@ -179,6 +195,9 @@ public class CovidChecker {
                                 }
                             }
 
+                        }
+                        if (perso1.pause && perso2.pause){
+                            perso1.setPositionX((int)perso1.getPositionX()+1);
                         }
                     }
 

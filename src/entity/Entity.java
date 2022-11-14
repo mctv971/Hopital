@@ -7,6 +7,8 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
+
+
 public class Entity extends Thread{
     public static ArrayList<Entity> toto = new ArrayList<Entity>();
     public int probleme;
@@ -27,8 +29,12 @@ public class Entity extends Thread{
     int[][][] liste_depla;
     public boolean pause = false;
     public int compteur_stop =0;
+    int compteur_erreur =0;
+    int x_erreur;
+    int y_erreur;
 
 
+    public boolean assis =false;
 
     public Entity(GamePanel gp, int positionX, int positionY, int covid) {
         this.gp = gp;
@@ -45,10 +51,10 @@ public class Entity extends Thread{
             finishX = 47; finishY = 55;
         }
         else if (this.getClass().getSimpleName().equalsIgnoreCase("Patient")){
-            finishX = 32; finishY = 43;
+            finishX = 32; finishY = 42;
         }
         else {
-            finishX = 32; finishY = 47;
+            finishX = 32; finishY = 46;
         }
 
     }
@@ -108,12 +114,13 @@ public class Entity extends Thread{
     public void getChoixdepla() {
         int x = (int)this.getPositionX();
         int y = (int)this.getPositionY();
-        if (arrive){
+        if (arrive && finishX != 0 && finishY!=0 ){
 
 
             liste_depla = new int[100][100][2];
 
             liste_depla = depla.Chemin(this,finishX, finishY,x,y);
+
             arrive = false;
 
         }
@@ -153,15 +160,57 @@ public class Entity extends Thread{
                 setDirection("right");
 
             }
+            else if(!depla.isValid(this,(int)positionX,(int)positionY)){
+                int [] liste = {liste_depla[x][y+1][0],liste_depla[x][y-1][0],liste_depla[x-1][y][0],liste_depla[x+1][y][0]};
+                int m = liste[0];
+                for (int n =1; n<3; n++){
+                    if (m == 0){
+                        m = liste[n];
+                    }
+                    else {
+                        if (m>liste[n] && liste[n]!=0){
+                            m = liste[n];
+                        }
+                    }
+                }
+
+                if (m ==liste_depla[x][y+1][0] ){
+                    setDirection("down");
+                }
+                else if (m== liste_depla[x][y-1][0]){
+                    setDirection("up");
+                }
+                else if (m == liste_depla[x-1][y][0]){
+                    setDirection("left");
+                }
+                else if (m == liste_depla[x+1][y][0]){
+                    setDirection("right");
+
+                }
+            }
         }
+
     }
 
     public void run() {
         try {
+
+
             // modification position player
             if (j == 0 && !pause) {
                 this.getChoixdepla();
             }
+            if (x_erreur == (int)this.getPositionX() && y_erreur == (int)this.getPositionY()){
+                compteur_erreur +=1;
+
+                if (compteur_erreur == 2500){
+                    pause = false;
+                    direction = "left";
+                    compteur_erreur =0;
+                }
+            }
+            x_erreur = (int)this.getPositionX();
+            y_erreur =(int)this.getPositionY();
             if (pause){
                 direction = "start";
             }
@@ -201,7 +250,7 @@ public class Entity extends Thread{
                 j = 0;
             }
 
-            int k=(int) (Math.random()*30);
+            int k=(int) (Math.random()*100);
             if (k == 1){
                 setCovid(0);
             }

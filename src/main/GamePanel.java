@@ -17,20 +17,20 @@ public class GamePanel extends JPanel implements Runnable{ //Ecran de jeu
     // WORLD SETTINGS
     public final int maxWorldCol = 100;
     public final int maxWorldRow = 100;
-    public int nbMedecin = 10; // MAX 100
-    public int nbPatient = 20; // MAX 100
-    public int nbVisiteur = 0; // MAX 100
+    public int nbMedecin = 30; // MAX 100
+    public int nbPatient = 30; // MAX 100
+    public int nbVisiteur = 40; // MAX 100
 
 
     public int[][] nbChambrePatient = new int[33][2];
-    public int[] nbChambreRea = new int[14];
-    public int[] nbLitMedecin = new int[86];
-    public int[] nbSiegeVisiteur = new int[5];
+    public int[] nbChambreRea = new int[15];
+    public int[] nbLitMedecin = new int[59];
+    public int[] nbSiegeVisiteur = new int[67];
 
     //FPS
-    int FPS = 60;
+    int FPS = 70;
     TileManager tileM = new TileManager(this);
-    public CovidChecker cChecker = new CovidChecker(this);
+    public StatutChecker cChecker = new StatutChecker(this);
     Thread gameThread; //Il gère le temps dans le jeu, et donc fait tourner le programme
 
     public Deplacement depla = new Deplacement(this);
@@ -109,7 +109,7 @@ public class GamePanel extends JPanel implements Runnable{ //Ecran de jeu
             }
         }
         //System.out.println("Nombre covid total : "+ nbCovid +" Nombre de covid variant "+nbVariant+ "  Nombre Non Covid :  "+ (Entity.toto.size()- nbCovid));
-        cChecker.checkCovid();
+        cChecker.checkStatut();
 
     }
     public void paintComponent(Graphics g){ //C'est un peu comme ton stylo ou ton feutre

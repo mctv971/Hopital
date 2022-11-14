@@ -20,7 +20,7 @@ public class TileManager {
         tile = new Tile[50];
         mapTileNum = new int[gp.maxWorldCol][gp.maxWorldRow];
         getTileImage();
-        loadMap("maps/map1.txt");
+        loadMap("maps/mapfinal.txt");
     }
 
     private void getTileImage() {
@@ -156,7 +156,7 @@ public class TileManager {
                 String line = br.readLine();
 
                 while (col < gp.maxWorldCol) {
-                    String numbers[] = line.split(" ");
+                    String numbers[] = line.split(";");
                     int num = Integer.parseInt(numbers[col]);
                     mapTileNum[col][row] = num;
                     col++;

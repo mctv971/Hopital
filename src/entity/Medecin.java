@@ -7,6 +7,8 @@ import javax.imageio.ImageIO;
 import java.io.IOException;
 import java.util.Objects;
 
+import static tiles.TileManager.mapTileNum;
+
 public class Medecin extends Entity{
     Lieu lieu = new Lieu();
     int compteur_guerri =0;
@@ -53,6 +55,7 @@ public class Medecin extends Entity{
                     gp.nbLitMedecin[n] = 1;
                     choix [0] = lieu.siegeMedecin(i)[0];
                     choix [1] = lieu.siegeMedecin(i)[1];
+                    mapTileNum[choix [0]][choix [1]] = 45;
 
                 }
                 n++;
@@ -64,6 +67,7 @@ public class Medecin extends Entity{
                 if (gp.nbChambrePatient[n][0] == 1 && gp.nbChambrePatient[n][1] == 0){
                     trouve = true;
                     gp.nbLitMedecin[siege] = 0;
+
                     i =n;
                     assis = false;
                     gp.nbChambrePatient[i][1] = 1;
@@ -83,9 +87,11 @@ public class Medecin extends Entity{
                         i=n;
                         siege = i;
                         assis = true;
+
                         gp.nbLitMedecin[i] = 1;
                         choix [0] = lieu.siegeMedecin(i)[0];
                         choix [1] = lieu.siegeMedecin(i)[1];
+
                     }
                     n++;
                 }

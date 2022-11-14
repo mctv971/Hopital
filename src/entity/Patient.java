@@ -12,7 +12,7 @@ import java.util.Objects;
 public class Patient extends Entity{
 
     Lieu lieu = new Lieu();
-    int[] choix = new int[2];
+    int[] choix = new int[8];
     //0 probleme, 1 en cours de traitement,2 en cours de guerison 3. rea, 4, mort, 5 guéris
     public Patient(GamePanel gp, int positionX, int positionY, int covid){
         super(gp,positionX,positionY,covid);
@@ -38,12 +38,9 @@ public class Patient extends Entity{
 
 
     public int[] choixLieu() {
-        if (probleme ==2){
-            //System.out.println("lieu patient c"+choix[0]+"h"+choix[1]+" probleme :" + probleme);
-        }
 
 
-        boolean trouve = false;
+
 
         if (probleme == 3){
             choix [0] = lieu.chambreRea(i)[0];  // REA
@@ -52,10 +49,11 @@ public class Patient extends Entity{
             return choix;
 
         }
-        if (probleme == 1 && !trouve) {
+        if (probleme == 1) {
+            boolean trouve = false;
 
             int j = 0;
-            while (!trouve && i<gp.nbChambrePatient.length){
+            while (!trouve && j<gp.nbChambrePatient.length){
                 if (gp.nbChambrePatient[j][0] == 0){
 
                     trouve = true;
@@ -93,7 +91,6 @@ public class Patient extends Entity{
             choix[0] = lieu.accueil()[0];
             choix[1] = lieu.accueil()[1];
             return choix;
-
         }
 
 
