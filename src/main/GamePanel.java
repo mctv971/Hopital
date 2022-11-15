@@ -28,7 +28,7 @@ public class GamePanel extends JPanel implements Runnable{ //Ecran de jeu
     // Parametre d'affichage
     public final int tileSize = 10;
 
-    public final int screenWidth = 1000;
+    public final int screenWidth = 1200;
     public final int screenHeight = 820;
     // WORLD SETTINGS
     public final int maxWorldCol = 100;
@@ -39,7 +39,7 @@ public class GamePanel extends JPanel implements Runnable{ //Ecran de jeu
     public int nbCovidbase =0;
 
 
-    public int[][] nbChambrePatient = new int[33][2];
+    public int[][] nbChambrePatient = new int[32][2];
     public int[] nbChambreRea = new int[15];
     public int[] nbLitMedecin = new int[59];
     public int[] nbSiegeVisiteur = new int[67];

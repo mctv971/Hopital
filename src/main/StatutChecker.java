@@ -154,8 +154,8 @@ public class StatutChecker {
 
 
 
-                        if (!perso1.pause && !perso2.pause &&( !perso1.assis||  !perso2.assis) ) {
-                            if (perso1.getDirection() == perso2.getDirection() || perso1.getDirection() == "start" || perso2.getDirection() == "start" ){
+                        if (!perso1.pause && !perso2.pause && !perso1.assis &&  !perso2.assis)  {
+                            if (c1 && perso1.getDirection() == perso2.getDirection() || perso1.getDirection() == "start" || perso2.getDirection() == "start" ){
                                 perso1.pause = true;
                                 perso2.pause =false;
                             }

@@ -81,7 +81,7 @@ public class Main {
         gamePanel.label7.setText("Le nombre de FPS (vitesse) est :  " + gamePanel.slider4.getValue());
         gamePanel.labelCovid.setText("le Covid de base est:  " + gamePanel.slider3.getValue());
         windowSlider.setSize(250, 400);
-        window.setSize(1000,1000);
+        window.setSize(1200,1000);
 
         window.setLocationRelativeTo(null); // affiche la fenetre au milieu
 

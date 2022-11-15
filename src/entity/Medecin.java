@@ -14,7 +14,6 @@ public class Medecin extends Entity{
     int compteur_guerri =0;
     int[] choix = new int[2];
     int siege;
-    boolean assis =false;
 
     public Medecin(GamePanel gp,int positionX, int positionY, int covid){
         super(gp,positionX,positionY,covid);
@@ -72,6 +71,7 @@ public class Medecin extends Entity{
                     gp.nbLitMedecin[siege] = 0;
 
                     i =n;
+                    System.out.println("coucou");
                     assis = false;
                     gp.nbChambrePatient[i][1] = 1;
                     statut = 2;

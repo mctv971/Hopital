@@ -57,7 +57,7 @@ public class Lieu {
                 break;
 
 
-            case 3:
+            case 27:
                 lieu[0] = 15; // patient
                 lieu[1] = 9;
                 lieu[2] = 14; // medecin
@@ -79,7 +79,7 @@ public class Lieu {
                 lieu[7] = 15;
                 break;
 
-            case 5:
+            case 28:
                 lieu[0] = 25; // patient
                 lieu[1] = 9;
                 lieu[2] = 25; // medecin
@@ -101,7 +101,7 @@ public class Lieu {
                 lieu[7] = 15;
                 break;
 
-            case 7:
+            case 15:
                 lieu[0] = 35; // patient
                 lieu[1] = 9;
                 lieu[2] = 35; // medecin
@@ -141,7 +141,7 @@ public class Lieu {
                 lieu[6] = 50; // siege visiteur
                 lieu[7] = 15;
                 break;
-            case 9:
+            case 26:
                 lieu[0] = 55; // patient
                 lieu[1] = 9;
                 lieu[2] = 55; // medecin
@@ -161,7 +161,7 @@ public class Lieu {
                 lieu[6] = 60; // siege visiteur
                 lieu[7] = 15;
                 break;
-            case 13:
+            case 21:
                 lieu[0] = 65; // patient
                 lieu[1] = 9;
                 lieu[2] = 65; // medecin
@@ -181,7 +181,7 @@ public class Lieu {
                 lieu[6] = 70; // siege visiteur
                 lieu[7] = 15;
                 break;
-            case 15:
+            case 7:
                 lieu[0] = 75; // patient
                 lieu[1] = 9;
                 lieu[2] = 75; // medecin
@@ -201,7 +201,7 @@ public class Lieu {
                 lieu[6] = 80; // siege visiteur
                 lieu[7] = 15;
                 break;
-            case 17:
+            case 24:
                 lieu[0] = 89; // patient
                 lieu[1] = 10;
                 lieu[2] = 89; // medecin
@@ -221,7 +221,7 @@ public class Lieu {
                 lieu[6] = 84; // siege visiteur
                 lieu[7] = 17;
                 break;
-            case 19:
+            case 30:
                 lieu[0] = 89; // patient
                 lieu[1] = 23;
                 lieu[2] = 89; // medecin
@@ -243,7 +243,7 @@ public class Lieu {
                 break;
 
 
-            case 21:
+            case 13:
                 lieu[0] = 89; // patient
                 lieu[1] = 33;
                 lieu[2] = 89; // medecin
@@ -275,7 +275,7 @@ public class Lieu {
                 lieu[6] = 84; // siege visiteur
                 lieu[7] = 41;
                 break;
-            case 24:
+            case 17:
                 lieu[0] = 89; // patient
                 lieu[1] = 48;
                 lieu[2] = 89; // medecin
@@ -295,7 +295,7 @@ public class Lieu {
                 lieu[6] = 84; // siege visiteur
                 lieu[7] = 52;
                 break;
-            case 26:
+            case 9:
                 lieu[0] = 89; // patient
                 lieu[1] = 58;
                 lieu[2] = 89; // medecin
@@ -305,7 +305,7 @@ public class Lieu {
                 lieu[6] = 84; // siege visiteur
                 lieu[7] = 58;
                 break;
-            case 27:
+            case 3:
                 lieu[0] = 89; // patient
                 lieu[1] = 63;
                 lieu[2] = 89; // medecin
@@ -315,7 +315,7 @@ public class Lieu {
                 lieu[6] = 84; // siege visiteur
                 lieu[7] = 62;
                 break;
-            case 28:
+            case 5:
                 lieu[0] = 89; // patient
                 lieu[1] = 68;
                 lieu[2] = 89; // medecin
@@ -335,7 +335,7 @@ public class Lieu {
                 lieu[6] = 21; // siege visiteur
                 lieu[7] = 70;
                 break;
-            case 30:
+            case 19:
                 lieu[0] = 15; // patient
                 lieu[1] = 66;
                 lieu[2] = 14; // medecin
@@ -354,16 +354,6 @@ public class Lieu {
                 lieu[5] = 59;
                 lieu[6] = 21; // siege visiteur
                 lieu[7] = 58;
-                break;
-            case 32:
-                lieu[0] = 17; // patient
-                lieu[1] = 53;
-                lieu[2] = 16; // medecin
-                lieu[3] = 53;
-                lieu[4] = 18; // visiteur chambre
-                lieu[5] = 53;
-                lieu[6] = 19; // siege visiteur
-                lieu[7] = 54;
                 break;
 
 

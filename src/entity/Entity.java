@@ -53,7 +53,7 @@ public class Entity extends Thread{
         // COORDONNEES DE DEPART
         
         if(this.getClass().getSimpleName().equalsIgnoreCase("Medecin")){
-            finishX = 47; finishY = 55;
+            finishX = 66; finishY = 49;
         }
         else if (this.getClass().getSimpleName().equalsIgnoreCase("Patient")){
             finishX = 32; finishY = 42;
