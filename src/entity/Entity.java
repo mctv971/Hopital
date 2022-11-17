@@ -7,7 +7,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-// CODE COULEUR PERSO : Bleu --> Medecin; Blanc --> Visiteur ; Noir --> Patient  ; SI COVID : Fond vert.
+// CODE COULEUR PERSO : Bleu --> Medecin; Blanc --> Visiteur ; Noir --> Patient  ; SI COVID : Fond vert
 
 
 
@@ -37,6 +37,7 @@ public class Entity extends Thread{
 
 
     public boolean assis =false;
+    int spawn = (int)Math.random()*10;
 
     public Entity(GamePanel gp, int positionX, int positionY, int covid) {
         this.gp = gp;
@@ -55,11 +56,16 @@ public class Entity extends Thread{
         if(this.getClass().getSimpleName().equalsIgnoreCase("Medecin")){
             finishX = 66; finishY = 49;
         }
-        else if (this.getClass().getSimpleName().equalsIgnoreCase("Patient")){
-            finishX = 32; finishY = 42;
+        else if (this.getClass().getSimpleName().equalsIgnoreCase("Visiteur")){
+            finishX = 4; finishY = 50;
         }
         else {
-            finishX = 32; finishY = 46;
+            if (spawn % 2 == 0){
+                finishX = 4; finishY = 25;
+            }
+            else {
+                finishX = 4; finishY = 36;
+            }
         }
 
     }

@@ -13,7 +13,7 @@ public class StatutChecker {
     Deplacement depla;
     public void checkStatut() {
 
-        int k = (int) (Math.random()*10);
+        int k = (int) (Math.random()*5);
         int c = (int) (Math.random()*100);
         for (int i = 0; i< Entity.toto.size(); i++){
 

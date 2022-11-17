@@ -31,7 +31,7 @@ public class GamePanel extends JPanel implements Runnable{ //Ecran de jeu
     public final int screenWidth = 1200;
     public final int screenHeight = 820;
     // WORLD SETTINGS
-    public final int maxWorldCol = 100;
+    public final int maxWorldCol = 120;
     public final int maxWorldRow = 82;
     public int nbMedecin ;
     public int nbPatient;
