@@ -93,8 +93,8 @@ public class Patient extends Entity{
         }
         if (statut == 8){
             statut =1;
-            setPositionX(5);
-            setPositionY(79);
+            setPositionX(110);
+            setPositionY(30);
             choix[0] = lieu.accueil()[0];
             choix[1] = lieu.accueil()[1];
             return choix;

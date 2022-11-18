@@ -131,7 +131,6 @@ public class StatutChecker {
 
                             }
                             if (patient.statut == 4 && medecin.statut == 4) {
-                                System.out.println("test");
 
                                 int m = 0;
                                 boolean trouve = false;

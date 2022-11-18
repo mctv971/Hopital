@@ -11,10 +11,10 @@ public class Lieu {
         return lieu;
     }
     public int[] accueil() {
-        lieu[0]=32;
-        lieu[1]=42;
-        lieu[2]=32;
-        lieu[3]=46;
+        lieu[0]=4;
+        lieu[1]=36;
+        lieu[2]=4;
+        lieu[3]=50;
         return lieu;
     }
 

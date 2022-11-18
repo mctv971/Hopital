@@ -128,7 +128,7 @@ public class Entity extends Thread{
         if (arrive && finishX != 0 && finishY!=0 ){ // CALCUL UN NOUVEL ITINERAIRE SI IL CHANGE DE STATUT
 
 
-            liste_depla = new int[100][100][2];
+            liste_depla = new int[120][81][2];
 
             liste_depla = depla.Chemin(this,finishX, finishY,x,y);
 
@@ -211,16 +211,7 @@ public class Entity extends Thread{
             if (j == 0 && !pause) {
                 this.getChoixdepla();
             }
-            // EN CAS DE BUG, SOLUTION DE DEBLOQUAGE
-            if (x_erreur == (int)this.getPositionX() && y_erreur == (int)this.getPositionY()){
-                compteur_erreur +=1;
 
-                if (compteur_erreur == 2500){
-                    pause = false;
-                    direction = "left";
-                    compteur_erreur =0;
-                }
-            }
             x_erreur = (int)this.getPositionX();
             y_erreur =(int)this.getPositionY();
             if (pause){

@@ -13,7 +13,7 @@ public class Medecin extends Entity{
     Lieu lieu = new Lieu();
     int compteur_guerri =0;
     int[] choix = new int[2];
-    int siege;
+    int siege =-1;
 
     public Medecin(GamePanel gp,int positionX, int positionY, int covid){
         super(gp,positionX,positionY,covid);
@@ -68,11 +68,13 @@ public class Medecin extends Entity{
             while (!trouve && n<gp.nbChambrePatient.length){
                 if (gp.nbChambrePatient[n][0] == 1 && gp.nbChambrePatient[n][1] == 0){
                     trouve = true;
-                    gp.nbLitMedecin[siege] = 0;
+                    if (siege !=-1 && assis) {
+                        gp.nbLitMedecin[siege] = 0;
+                        assis = false;
+                    }
 
                     i =n;
-                    System.out.println("coucou");
-                    assis = false;
+
                     gp.nbChambrePatient[i][1] = 1;
                     statut = 2;
                     choix [0] = lieu.chambrePatient(i)[2];
@@ -85,6 +87,7 @@ public class Medecin extends Entity{
             if (!trouve && !assis){
                 n =0;
                 while (!trouve && n<gp.nbLitMedecin.length){
+
                     if (gp.nbLitMedecin[n] == 0){
                         trouve = true;
                         i=n;

@@ -5,6 +5,8 @@ import tiles.TileManager;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 
 
 public class GamePanel extends JPanel implements Runnable{ //Ecran de jeu
@@ -15,7 +17,9 @@ public class GamePanel extends JPanel implements Runnable{ //Ecran de jeu
     public JLabel label5 = new JLabel();
     public JLabel label6 = new JLabel();
     public JLabel label7 = new JLabel();
-    public JLabel labelCovid = new JLabel();
+    public JLabel labelCovidMedecin = new JLabel();
+    public JLabel labelCovidPatient = new JLabel();
+    public JLabel labelCovidVisiteur = new JLabel();
     public JLabel labelErr= new JLabel();
 
     public JSlider slider = new JSlider(0,100,15);
@@ -23,26 +27,29 @@ public class GamePanel extends JPanel implements Runnable{ //Ecran de jeu
     public JSlider slider3 = new JSlider(0,100,15);
 
     public JSlider slider4 = new JSlider(0,300,60);
-    public JSlider sliderCovid = new JSlider(0,100,15);
+    public JSlider sliderCovidMedecin=new JSlider() ;
+    public JSlider sliderCovidPatient ;
+    public JSlider sliderCovidVisiteur ;
 
     // Parametre d'affichage
     public final int tileSize = 10;
 
-    public final int screenWidth = 1200;
+    public final int screenWidth = 1210;
     public final int screenHeight = 820;
     // WORLD SETTINGS
-    public final int maxWorldCol = 120;
-    public final int maxWorldRow = 82;
+    public final int maxWorldCol = 121;
+    public final int maxWorldRow = 81;
     public int nbMedecin ;
     public int nbPatient;
     public int nbVisiteur; // MAX 100
     public int nbCovidbase =0;
+    public boolean pause= false;
 
 
-    public int[][] nbChambrePatient = new int[32][2];
+    public int[][] nbChambrePatient = new int[25][2];
     public int[] nbChambreRea = new int[15];
-    public int[] nbLitMedecin = new int[59];
-    public int[] nbSiegeVisiteur = new int[67];
+    public int[] nbLitMedecin = new int[50];
+    public int[] nbSiegeVisiteur = new int[60];
 
     //FPS
     int FPS;
@@ -77,12 +84,12 @@ public class GamePanel extends JPanel implements Runnable{ //Ecran de jeu
 
     }
 
-
     @Override
     public void run() {
 
         double drawInterval = 1000000000/FPS; //0.01666 sec
         double nextDrawTime = System.nanoTime() + drawInterval;
+
 
         while(gameThread !=null){ //Boucle qui tourne sans cesse
 
@@ -90,8 +97,12 @@ public class GamePanel extends JPanel implements Runnable{ //Ecran de jeu
             // 2 Repaint : Dessine l'écran avec les mises à jours
 
 
-            update();
 
+            try {
+                update();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
             repaint();
 
             try {
@@ -117,24 +128,36 @@ public class GamePanel extends JPanel implements Runnable{ //Ecran de jeu
 
     }
 
-    public void update(){
-        int nbCovid=0;
-        int nbVariant=0;
-        for (int i = 0;i<Entity.toto.size(); i++){
-            Entity.toto.get(i).run();
-            if ( Entity.toto.get(i).getCovid() == 1 || Entity.toto.get(i).getCovid()==2){
-                nbCovid ++;
-            }
-            if (Entity.toto.get(i).getCovid()==2) {
-                nbVariant++;
-            }
-            label.setText("Nombre covid total : "+ nbCovid);
-            label2.setText(" Nombre de covid variant "+nbVariant);
-            label3.setText("  Nombre Non Covid :  "+ (Entity.toto.size()- nbCovid));
-        }
+    public void update() throws IOException {
 
-        //System.out.println("Nombre covid total : "+ nbCovid +" Nombre de covid variant "+nbVariant+ "  Nombre Non Covid :  "+ (Entity.toto.size()- nbCovid));
-        cChecker.checkStatut();
+        if (!pause) {
+            int nbCovid=0;
+            int nbVariant=0;
+            File outFile=new File("res/save/donnee");
+            outFile.getParentFile().mkdirs();
+            Writer writer = new FileWriter(outFile, StandardCharsets.UTF_8);
+            BufferedWriter br =new BufferedWriter(writer);
+            for (int i = 0;i<Entity.toto.size(); i++){
+                Entity.toto.get(i).run();
+                if ( Entity.toto.get(i).getCovid() == 1 || Entity.toto.get(i).getCovid()==2){
+                    nbCovid ++;
+                }
+                if (Entity.toto.get(i).getCovid()==2) {
+                    nbVariant++;
+                }
+                label.setText("Nombre covid total : "+ nbCovid);
+                label2.setText(" Nombre de covid variant "+nbVariant);
+                label3.setText("  Nombre Non Covid :  "+ (Entity.toto.size()- nbCovid));
+                br.write(nbCovid+" "+nbVariant+" "+(Entity.toto.size()- nbCovid));
+                br.newLine();
+                br.flush();
+
+
+            }
+
+            //System.out.println("Nombre covid total : "+ nbCovid +" Nombre de covid variant "+nbVariant+ "  Nombre Non Covid :  "+ (Entity.toto.size()- nbCovid));
+            cChecker.checkStatut();
+        }
 
     }
     public void paintComponent(Graphics g){ //C'est un peu comme ton stylo ou ton feutre

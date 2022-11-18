@@ -104,8 +104,8 @@ public class Visiteur extends Entity{
         }
         if (statut == 4){
             statut =1;
-            setPositionX(5);
-            setPositionY(79);
+            setPositionX(110);
+            setPositionY(50);
             choix[0] = lieu.accueil()[2];
             choix[1] = lieu.accueil()[3];
             return choix;

@@ -30,17 +30,17 @@ public class Deplacement {
     private static boolean isValid(Entity entity, boolean[][] visited, int i, int j)
     {
         if(entity.getClass().getSimpleName().equalsIgnoreCase("Medecin"))
-            return ((mapTileNum[i][j] != 9) && (mapTileNum[i][j] != 4) && (mapTileNum[i][j] != 0) && (mapTileNum[i][j] != 22) && (mapTileNum[i][j] != 33 ) && (mapTileNum[i][j] != 8 ) && (mapTileNum[i][j] != 10 )&& (mapTileNum[i][j] != 19 ) && (mapTileNum[i][j] != 20 ) && (mapTileNum[i][j] != 21 )  && ! visited[i][j]);
+            return ((mapTileNum[i][j] != 9) && (mapTileNum[i][j] != 4) && (mapTileNum[i][j] != 22) && (mapTileNum[i][j] != 33 ) && (mapTileNum[i][j] != 8 ) && (mapTileNum[i][j] != 10 )&& (mapTileNum[i][j] != 19 ) && (mapTileNum[i][j] != 20 ) && (mapTileNum[i][j] != 21 )  && ! visited[i][j]);
         else
-            return ((mapTileNum[i][j] != 9) && (mapTileNum[i][j] != 4) && (mapTileNum[i][j] != 0) && (mapTileNum[i][j] != 22) && (mapTileNum[i][j] != 33 ) && (mapTileNum[i][j] != 8 ) && (mapTileNum[i][j] != 34 ) && (mapTileNum[i][j] != 35 ) && (mapTileNum[i][j] != 36 )  && (mapTileNum[i][j] != 37 )&& (mapTileNum[i][j] != 19 ) && (mapTileNum[i][j] != 20 ) && (mapTileNum[i][j] != 21 )&& ! visited[i][j]);
+            return ((mapTileNum[i][j] != 9) && (mapTileNum[i][j] != 4)  && (mapTileNum[i][j] != 22) && (mapTileNum[i][j] != 33 ) && (mapTileNum[i][j] != 8 ) && (mapTileNum[i][j] != 34 ) && (mapTileNum[i][j] != 35 ) && (mapTileNum[i][j] != 36 )  && (mapTileNum[i][j] != 37 )&& (mapTileNum[i][j] != 19 ) && (mapTileNum[i][j] != 20 ) && (mapTileNum[i][j] != 21 )&& ! visited[i][j]);
 
     }
     public static boolean isValid(Entity entity, int i, int j)
     {
         if(entity.getClass().getSimpleName().equalsIgnoreCase("Medecin"))
-            return ((mapTileNum[i][j] != 9) && (mapTileNum[i][j] != 4) && (mapTileNum[i][j] != 0) && (mapTileNum[i][j] != 22) && (mapTileNum[i][j] != 33 ) && (mapTileNum[i][j] != 8 )&& (mapTileNum[i][j] != 10 )&& (mapTileNum[i][j] != 19 ) && (mapTileNum[i][j] != 20 ) && (mapTileNum[i][j] != 21 ) );
+            return ((mapTileNum[i][j] != 9) && (mapTileNum[i][j] != 4) && (mapTileNum[i][j] != 22) && (mapTileNum[i][j] != 33 ) && (mapTileNum[i][j] != 8 )&& (mapTileNum[i][j] != 10 )&& (mapTileNum[i][j] != 19 ) && (mapTileNum[i][j] != 20 ) && (mapTileNum[i][j] != 21 ) );
         else
-            return ((mapTileNum[i][j] != 9) && (mapTileNum[i][j] != 4) && (mapTileNum[i][j] != 0) && (mapTileNum[i][j] != 22) && (mapTileNum[i][j] != 33 ) && (mapTileNum[i][j] != 8 ) && (mapTileNum[i][j] != 34 ) && (mapTileNum[i][j] != 35 ) && (mapTileNum[i][j] != 36 )  && (mapTileNum[i][j] != 37 )&& (mapTileNum[i][j] != 19 ) && (mapTileNum[i][j] != 20 ) && (mapTileNum[i][j] != 21 ));
+            return ((mapTileNum[i][j] != 9) && (mapTileNum[i][j] != 4) && (mapTileNum[i][j] != 22) && (mapTileNum[i][j] != 33 ) && (mapTileNum[i][j] != 8 ) && (mapTileNum[i][j] != 34 ) && (mapTileNum[i][j] != 35 ) && (mapTileNum[i][j] != 36 )  && (mapTileNum[i][j] != 37 )&& (mapTileNum[i][j] != 19 ) && (mapTileNum[i][j] != 20 ) && (mapTileNum[i][j] != 21 ));
 
     }
 
@@ -48,11 +48,11 @@ public class Deplacement {
 
     public int[][][] Chemin(Entity entity,int startX, int startY,int finishX, int finishY){
 
-        boolean[][] deja_visite = new boolean[100][100];
+        boolean[][] deja_visite = new boolean[120][81];
         Queue<Node> q = new ArrayDeque<>();
         deja_visite[startX][startY] = true;
         q.add(new Node(startX, startY, 0));
-        int [][][] pred = new int[100][100][2];
+        int [][][] pred = new int[120][81][2];
 
         while (!q.isEmpty()) {
 
