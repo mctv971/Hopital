@@ -11,25 +11,19 @@ import java.nio.charset.StandardCharsets;
 
 public class GamePanel extends JPanel implements Runnable{ //Ecran de jeu
     public JLabel label = new JLabel();
-    public JLabel label2 = new JLabel();
     public JLabel label3 = new JLabel();
     public JLabel label4 = new JLabel();
     public JLabel label5 = new JLabel();
     public JLabel label6 = new JLabel();
-    public JLabel label7 = new JLabel();
-    public JLabel labelCovidMedecin = new JLabel();
-    public JLabel labelCovidPatient = new JLabel();
-    public JLabel labelCovidVisiteur = new JLabel();
-    public JLabel labelErr= new JLabel();
+    public JLabel labelSetFPS = new JLabel();
 
     public JSlider slider = new JSlider(0,100,15);
     public JSlider slider2 = new JSlider(0,100,15);
     public JSlider slider3 = new JSlider(0,100,15);
 
-    public JSlider slider4 = new JSlider(0,300,60);
-    public JSlider sliderCovidMedecin=new JSlider() ;
-    public JSlider sliderCovidPatient ;
-    public JSlider sliderCovidVisiteur ;
+    public JSlider sliderSetFPS = new JSlider(0,300,60);
+
+
 
     // Parametre d'affichage
     public final int tileSize = 10;
@@ -42,7 +36,6 @@ public class GamePanel extends JPanel implements Runnable{ //Ecran de jeu
     public int nbMedecin ;
     public int nbPatient;
     public int nbVisiteur; // MAX 100
-    public int nbCovidbase =0;
     public boolean pause= false;
 
 
@@ -77,15 +70,19 @@ public class GamePanel extends JPanel implements Runnable{ //Ecran de jeu
         nbMedecin = slider.getValue(); // MAX 100
         nbPatient = slider2.getValue(); //MAX 100
         nbVisiteur = slider3.getValue(); //MAX 100
-        FPS = slider4.getValue();
+        FPS = sliderSetFPS.getValue();
         monde.setMedecin();
         monde.setPatient();
         monde.setVisiteur();
 
     }
 
+    public void setupFPS(){
+        FPS = sliderSetFPS.getValue();
+    }
     @Override
     public void run() {
+
 
         double drawInterval = 1000000000/FPS; //0.01666 sec
         double nextDrawTime = System.nanoTime() + drawInterval;
@@ -94,17 +91,17 @@ public class GamePanel extends JPanel implements Runnable{ //Ecran de jeu
         while(gameThread !=null){ //Boucle qui tourne sans cesse
 
             // 1 Update : Mets à jour les informations
-            // 2 Repaint : Dessine l'écran avec les mises à jours
-
-
+            // 2 Repaint : Dessine l'écran avec les mises à jour
 
             try {
                 update();
+                setupFPS();
+                drawInterval = 1000000000/FPS; //0.01666 sec
+                nextDrawTime = System.nanoTime() + drawInterval;
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
             repaint();
-
             try {
                 double remainingTime = nextDrawTime - System.nanoTime();
                 remainingTime = remainingTime/1000000;
@@ -146,7 +143,6 @@ public class GamePanel extends JPanel implements Runnable{ //Ecran de jeu
                     nbVariant++;
                 }
                 label.setText("Nombre covid total : "+ nbCovid);
-                label2.setText(" Nombre de covid variant "+nbVariant);
                 label3.setText("  Nombre Non Covid :  "+ (Entity.toto.size()- nbCovid));
                 br.write(nbCovid+" "+nbVariant+" "+(Entity.toto.size()- nbCovid));
                 br.newLine();
