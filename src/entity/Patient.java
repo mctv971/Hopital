@@ -1,11 +1,8 @@
 package entity;
 
-import main.Deplacement;
 import main.GamePanel;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Objects;
 
@@ -93,8 +90,13 @@ public class Patient extends Entity{
         }
         if (statut == 8){
             statut =1;
-            setPositionX(110);
-            setPositionY(30);
+            setPositionX(119);
+            setPositionY(10);
+
+            double k=Math.random()*10 ;
+            if (k>=3)
+                setCovid(0);
+
             choix[0] = lieu.accueil()[0];
             choix[1] = lieu.accueil()[1];
             return choix;

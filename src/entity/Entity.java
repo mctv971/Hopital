@@ -31,11 +31,13 @@ public class Entity extends Thread{
     int[][][] liste_depla;
     public boolean pause = false;
     public int compteur_stop =0;
+
     int compteur_erreur =0;
     int x_erreur;
     int y_erreur;
-
-
+    double age = 10 + Math.random()*80;
+    public double tauxContamination = Math.random()*100 ;
+    public double defenseImun = defenseImun();
     public boolean assis =false;
     int spawn = (int)Math.random()*10;
 
@@ -256,10 +258,7 @@ public class Entity extends Thread{
                 j = 0;
             }
 
-            int k=(int) (Math.random()*100);
-            if (k == 1){
-                setCovid(0);
-            }
+
             pause = false;
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -306,6 +305,31 @@ public class Entity extends Thread{
 
 
     }
+    public double defenseImun (){
 
-
+        if(10<= age && age<30) {
+            if (getClass().getSimpleName().equalsIgnoreCase("Patient"))
+                return (70 + Math.random() * 30) / 2;
+            else
+                return 70 + Math.random() * 30;
+        }
+        if(30<= age && age<50){
+            if (getClass().getSimpleName().equalsIgnoreCase("Patient"))
+                return (50 + Math.random() * 30) / 2;
+            else
+                return 50 + Math.random()*30;
+        }
+        if(50<= age && age<70){
+            if (getClass().getSimpleName().equalsIgnoreCase("Patient"))
+                return (30 + Math.random() * 30) / 2;
+            else
+                return 30 + Math.random()*30;
+        }
+        else{
+            if (getClass().getSimpleName().equalsIgnoreCase("Patient"))
+                return (10 + Math.random()*30)/2;
+            else
+                return 10 + Math.random()*30;
+        }
+    }
 }

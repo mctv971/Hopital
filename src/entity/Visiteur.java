@@ -104,8 +104,13 @@ public class Visiteur extends Entity{
         }
         if (statut == 4){
             statut =1;
-            setPositionX(110);
-            setPositionY(50);
+            setPositionX(1);
+            setPositionY(68);
+
+            double k=Math.random()*10 ;
+            if (k>=3)
+                setCovid(0);
+
             choix[0] = lieu.accueil()[2];
             choix[1] = lieu.accueil()[3];
             return choix;

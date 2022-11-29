@@ -367,21 +367,21 @@ public class Lieu {
             case 0:
                 lieu[0] = 88;
                 lieu[1] = 76;
-                lieu[2] = 87;
-                lieu[3] = 76;
+                lieu[2] = 88;
+                lieu[3] = 75;
                 break;
             case 1:
                 lieu[0] = 84;
                 lieu[1] = 76;
-                lieu[2] = 83;
-                lieu[3] = 76;
+                lieu[2] = 84;
+                lieu[3] = 75;
                 break;
 
             case 2:
                 lieu[0] = 79;
                 lieu[1] = 76;
-                lieu[2] = 78;
-                lieu[3] = 76;
+                lieu[2] = 79;
+                lieu[3] = 75;
                 break;
 
 
@@ -390,8 +390,8 @@ public class Lieu {
             case 3:
                 lieu[0] = 74;
                 lieu[1] = 76;
-                lieu[2] = 73;
-                lieu[3] = 76;
+                lieu[2] = 74;
+                lieu[3] = 75;
                 break;
 
 
@@ -400,8 +400,8 @@ public class Lieu {
             case 4:
                 lieu[0] = 69;
                 lieu[1] = 76;
-                lieu[2] = 68;
-                lieu[3] = 76;
+                lieu[2] = 69;
+                lieu[3] = 75;
                 break;
 
 
@@ -409,8 +409,8 @@ public class Lieu {
             case 5:
                 lieu[0] = 64;
                 lieu[1] = 76;
-                lieu[2] = 63;
-                lieu[3] = 76;
+                lieu[2] = 64;
+                lieu[3] = 75;
                 break;
 
 
@@ -418,8 +418,8 @@ public class Lieu {
             case 6:
                 lieu[0] = 59;
                 lieu[1] = 76;
-                lieu[2] = 58;
-                lieu[3] = 76;
+                lieu[2] = 59;
+                lieu[3] = 75;
                 break;
 
 
@@ -427,44 +427,46 @@ public class Lieu {
             case 7:
                 lieu[0] = 54;
                 lieu[1] = 76;
-                lieu[2] = 53;
-                lieu[3] = 76;
+                lieu[2] = 54;
+                lieu[3] = 75;
                 break;
+
             case 8:
                 lieu[0] = 49;
                 lieu[1] = 76;
                 lieu[2] = 49;
-                lieu[3] = 76;
+                lieu[3] = 75;
                 break;
+
             case 9:
                 lieu[0] = 44;
                 lieu[1] = 76;
-                lieu[2] = 43;
-                lieu[3] = 76;
+                lieu[2] = 44;
+                lieu[3] = 75;
                 break;
             case 10:
                 lieu[0] = 39;
                 lieu[1] = 76;
-                lieu[2] = 38;
-                lieu[3] = 76;
+                lieu[2] = 39;
+                lieu[3] = 75;
                 break;
             case 11:
                 lieu[0] = 34;
                 lieu[1] = 76;
-                lieu[2] = 33;
-                lieu[3] = 76;
+                lieu[2] = 34;
+                lieu[3] = 75;
                 break;
             case 12:
                 lieu[0] = 29;
                 lieu[1] = 76;
                 lieu[2] = 28;
-                lieu[3] = 76;
+                lieu[3] = 75;
                 break;
             case 13:
                 lieu[0] = 24;
                 lieu[1] = 76;
-                lieu[2] = 23;
-                lieu[3] = 76;
+                lieu[2] = 24;
+                lieu[3] = 75;
                 break;
             case 14:
                 lieu[0] = 15;

@@ -13,8 +13,6 @@ public class StatutChecker {
     Deplacement depla;
     public void checkStatut() {
 
-        int k = (int) (Math.random()*5);
-        int c = (int) (Math.random()*100);
         for (int i = 0; i< Entity.toto.size(); i++){
 
             for (int j = 0; j< Entity.toto.size(); j++){
@@ -51,13 +49,13 @@ public class StatutChecker {
 
                     if (c1 || c2 || c3 || c4 || c5 || c10 || c11 || c12 || c13){
                         if ((c7 && c8) || (c8 && c9) || (c7 && c72) ){
-                            if (patient.getCovid() == 1 && k==1) {
+                            if (patient.getCovid() == 1 && patient.tauxContamination >= visiteur.defenseImun) {
                                 visiteur.setCovid(1);
                             }
 
                         }
                         if (c6 &&(c7 || c9)){
-                            if (patient.getCovid() == 1 && c==1) {
+                            if (patient.getCovid() == 1 && patient.tauxContamination >= medecin.defenseImun) {
                                 medecin.setCovid(1);
                             }
                         }
@@ -86,7 +84,7 @@ public class StatutChecker {
                                     if (gp.nbChambrePatient[patient.i][1] == 1 && c6){
                                         if (patient.compteur_stop == 10){
                                             patient.compteur_stop =0;
-                                            int n = (int)Math.random()*50;
+                                            int n = (int)(Math.random()*10);
                                             if (n== 7){
                                                 patient.statut = 4;
                                                 medecin.statut = 4;
