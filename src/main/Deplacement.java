@@ -29,7 +29,7 @@ public class Deplacement {
     // PERMET DE REGARDER SI IL PEUT OU PAS ALLER SUR TEL CASE
     private static boolean isValid(Entity entity, boolean[][] visited, int i, int j)
     {
-        if(entity.getClass().getSimpleName().equalsIgnoreCase("Medecin"))
+        if(entity.getClass().getSimpleName().equalsIgnoreCase("Medecin"))// Ici on interdit au médecin d'aller sur les cases correspondants aux numéros suivants :
             return ((mapTileNum[i][j] != 9) && (mapTileNum[i][j] != 4) && (mapTileNum[i][j] != 22) && (mapTileNum[i][j] != 33 ) && (mapTileNum[i][j] != 8 ) && (mapTileNum[i][j] != 10 )&& (mapTileNum[i][j] != 19 ) && (mapTileNum[i][j] != 20 ) && (mapTileNum[i][j] != 21 )  && ! visited[i][j]);
         else
             return ((mapTileNum[i][j] != 9) && (mapTileNum[i][j] != 4)  && (mapTileNum[i][j] != 22) && (mapTileNum[i][j] != 33 ) && (mapTileNum[i][j] != 8 ) && (mapTileNum[i][j] != 34 ) && (mapTileNum[i][j] != 35 ) && (mapTileNum[i][j] != 36 )  && (mapTileNum[i][j] != 37 )&& (mapTileNum[i][j] != 19 ) && (mapTileNum[i][j] != 20 ) && (mapTileNum[i][j] != 21 )&& ! visited[i][j]);
@@ -45,7 +45,7 @@ public class Deplacement {
     }
 
     // ALGORITHME DE LEE REVISITE AFIN DE GARDER LE PARCOURS EN MEMOIRE
-
+    // Est utilisé afin de trouver le chemin le plus court vers la destination
     public int[][][] Chemin(Entity entity,int startX, int startY,int finishX, int finishY){
 
         boolean[][] deja_visite = new boolean[120][81];

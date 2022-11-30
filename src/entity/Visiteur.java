@@ -18,7 +18,7 @@ public class Visiteur extends Entity{
         getPlayerImage();
 
     }
-
+            // Ici on va chercher les images du Visiteur dans le dossier player/visiteur (4 images pour le covid, 4 images sans covid)
     public void getPlayerImage() {
         try {
             up1= ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("player/visiteur/boy_up_1.png")));

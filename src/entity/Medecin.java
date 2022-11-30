@@ -21,6 +21,7 @@ public class Medecin extends Entity{
 
 
     }
+    // Ici on va chercher les images du Médecin dans le dossier player/médecin (4 images pour le covid, 4 images sans covid)
 
     public void getPlayerImage() {
         try {
@@ -40,11 +41,10 @@ public class Medecin extends Entity{
 
 
     public int[] choixLieu() {
-        //System.out.println("lieu medecin c"+choix[0]+"h"+choix[1]+" statut :" + statut);
 
         // statut 1 : Cherche un patient ou va en salle de repos le cas contraire
         // statut 2 : Opère
-        // statut 3 : Va en réa s'il n'est pas guéri
+        // statut 3 : Va en réa si le patient n'est pas guéri
 
 
         int n =0;

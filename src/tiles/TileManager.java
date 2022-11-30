@@ -8,7 +8,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-
+// le TileManager va servir à associer chaque numéro de la map au format txt,
+// en image (chaise, bureau, sol, tout ce qui est visible en temps qu'image sur la map),
+// toutes présentes dans le dossier map.
 public class TileManager {
     GamePanel gp;
     public Tile[] tile;
@@ -20,10 +22,10 @@ public class TileManager {
         tile = new Tile[150];
         mapTileNum = new int[gp.maxWorldCol][gp.maxWorldRow];
         getTileImage();
-        loadMap("maps/mapfinal.txt");
+        loadMap("maps/mapfinal.txt"); // On appelle ici la map à lire
     }
 
-    private void getTileImage() {
+    private void getTileImage() { // Et l'associatino se fait ici :
         try{
             tile[0] =new Tile();
             tile[0].image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("map/herbe.png"));
@@ -298,8 +300,8 @@ public class TileManager {
                 String line = br.readLine();
 
                 while (col < gp.maxWorldCol) {
-                    String numbers[] = line.split(";");
-                    int num = Integer.parseInt(numbers[col]);
+                    String numbers[] = line.split(";");// Ici on précise à l'algorithme que chaque nombre
+                    int num = Integer.parseInt(numbers[col]);// est séparé d'un ;
                     mapTileNum[col][row] = num;
                     col++;
 
@@ -314,7 +316,8 @@ public class TileManager {
         }
 
     }
-    public void draw (Graphics2D g2){
+    public void draw (Graphics2D g2){ // La fonction draw va, comme son nom l'indique, servir à dessiner la map.txt
+        // en prenant en compte le nombres de lignes et le nombres de colonnes
 
 
         int worldCol = 0;
@@ -324,8 +327,7 @@ public class TileManager {
 
             int worldX = worldCol * gp.tileSize;
             int worldY = worldRow * gp.tileSize;
-            //int screenX = worldX - gp.player.worldX + gp.player.screenX;
-            //int screenY = worldY - gp.player.worldY + gp.player.screenY;
+
 
             g2.drawImage(tile[tileNum].image, worldX, worldY, gp.tileSize, gp.tileSize, null);
             worldCol++;

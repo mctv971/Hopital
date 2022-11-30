@@ -10,12 +10,12 @@ public class Patient extends Entity{
 
     Lieu lieu = new Lieu();
     int[] choix = new int[8];
-    //0 statut, 1 en cours de traitement,2 en cours de guerison 3. rea, 4, mort, 5 guéris
     public Patient(GamePanel gp, int positionX, int positionY, int covid){
         super(gp,positionX,positionY,covid);
         getPlayerImage();
 
     }
+    // Ici on va chercher les images du Patient dans le dossier player/patient (4 images pour le covid, 4 images sans covid)
 
     public void getPlayerImage() {
         try {
@@ -38,8 +38,8 @@ public class Patient extends Entity{
 
         // statut 1 : Pris en charge --> direction la chambre
         // statut 2 : Dans la chambre --> Soit guéri, soit réa
-        // statut 3: Si Réa, direction la chambre
-        // statut 5 :Part dans l'hopital
+        // statut 3 : Si Réa, direction la chambre
+        // statut 5 : Part dans l'hopital
         // statut 7 : Reviens comme un nouveau patient
 
 
@@ -48,12 +48,12 @@ public class Patient extends Entity{
 
         if (statut == 3){
             choix [0] = lieu.chambreRea(i)[0];  // REA
-            choix [1] = lieu.chambreRea(i)[1];
-  // REA
+            choix [1] = lieu.chambreRea(i)[1];  // REA
+
             return choix;
 
         }
-        if (statut == 1) {
+        if (statut == 1) { // Direction chambre
             boolean trouve = false;
 
             int j = 0;
@@ -61,7 +61,7 @@ public class Patient extends Entity{
                 if (gp.nbChambrePatient[j][0] == 0){
 
                     trouve = true;
-                    gp.nbChambrePatient[j][0] = 1;
+                    gp.nbChambrePatient[j][0] = 1; // Direction chambre
                     i = j;
                     statut =2;
                     choix [0] = lieu.chambrePatient(i)[0];
@@ -85,7 +85,7 @@ public class Patient extends Entity{
             gp.nbChambreRea[i] = 0;
             choix [0] = lieu.sorti()[0];  // SORTI
             choix [1] = lieu.sorti()[1];
-            statut =8;
+            statut =8; // Reviens comme un nouveau patient
             return choix;
         }
         if (statut == 8){
@@ -93,7 +93,7 @@ public class Patient extends Entity{
             setPositionX(119);
             setPositionY(10);
 
-            double k=Math.random()*10 ;
+            double k=Math.random()*10 ; // Le nouveau patient à 7/10 chance de revenir sans le covid
             if (k>=3)
                 setCovid(0);
 

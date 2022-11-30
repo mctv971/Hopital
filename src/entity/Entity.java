@@ -305,6 +305,11 @@ public class Entity extends Thread{
 
 
     }
+
+    // Ici est mis en place la défence immunitaire fonctionant de la façon suivante :
+    // Un âge est attribué à chaque personnage (entre 10 et 90 ans)
+    // On donne une défense immunitaire pour chaque tranche d'âge, elle même divisée par 2 si le patient est malade
+    // Or si il est à l'hôpital c'est qu'il est malade.
     public double defenseImun (){
 
         if(10<= age && age<30) {
