@@ -272,31 +272,31 @@ public class Entity extends Thread{
         switch (direction) {
             case "start":
                 image = down1;
-                if (this.getCovid()==1|| this.getCovid()==2){
+                if (this.getCovid()==1){
                     image =down2;
                 }
             case "up":
                 image = up1;
-                if (this.getCovid()==1 || this.getCovid()== 2){
+                if (this.getCovid()==1){
                     image =up2;
                 }
                 break;
             case "down":
                 image = down1;
-                if (this.getCovid()==1|| this.getCovid()== 2){
+                if (this.getCovid()==1){
                     image =down2;
                 }
                 break;
             case "left":
 
                 image = left1;
-                if (this.getCovid()==1|| this.getCovid()==2){
+                if (this.getCovid()==1){
                     image =left2;
                 }
                 break;
             case "right":
                 image = right1;
-                if (this.getCovid()==1|| this.getCovid()==2){
+                if (this.getCovid()==1){
                     image =right2;
                 }
                 break;

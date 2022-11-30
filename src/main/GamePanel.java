@@ -10,7 +10,7 @@ import java.nio.charset.StandardCharsets;
 
 
 public class GamePanel extends JPanel implements Runnable{ //Ecran de jeu
-    public JLabel label = new JLabel();
+    public JLabel label = new JLabel();// on initialise les labels et les sliders
     public JLabel label3 = new JLabel();
     public JLabel label4 = new JLabel();
     public JLabel label5 = new JLabel();
@@ -53,31 +53,31 @@ public class GamePanel extends JPanel implements Runnable{ //Ecran de jeu
     public Deplacement depla = new Deplacement(this);
     Monde monde = new Monde(this);
 
-    public GamePanel(){
+    public GamePanel(){// on crée le gamepanel
         this.setPreferredSize(new Dimension(screenWidth,screenHeight));
         this.setBackground(Color.WHITE);
         this.setDoubleBuffered(true);
         this.setFocusable(true);
 
     }
-    public void startGameThread() {
+    public void startGameThread() {// cette methode permet de lancer le Thread
 
         gameThread = new Thread(this);
         gameThread.start();
 
     }
-    public void setupGame(){
+    public void setupGame(){// permet de sauvegarder les valeurs selectionné dans la fenêtre de paramétrage
         nbMedecin = slider.getValue(); // MAX 100
         nbPatient = slider2.getValue(); //MAX 100
         nbVisiteur = slider3.getValue(); //MAX 100
-        FPS = sliderSetFPS.getValue();
+        FPS=sliderSetFPS.getValue();
         monde.setMedecin();
         monde.setPatient();
         monde.setVisiteur();
 
     }
 
-    public void setupFPS(){
+    public void setupFPS(){// permet de modifier la vitesse en temps réel
         FPS = sliderSetFPS.getValue();
     }
     @Override
@@ -95,7 +95,7 @@ public class GamePanel extends JPanel implements Runnable{ //Ecran de jeu
 
             try {
                 update();
-                setupFPS();
+                setupFPS();// actualise la vitesse à chaque update
                 drawInterval = 1000000000/FPS; //0.01666 sec
                 nextDrawTime = System.nanoTime() + drawInterval;
             } catch (IOException e) {
@@ -130,29 +130,26 @@ public class GamePanel extends JPanel implements Runnable{ //Ecran de jeu
         if (!pause) {
             int nbCovid=0;
             int nbVariant=0;
+            // fichier de base
             File outFile=new File("res/save/donnee");
             outFile.getParentFile().mkdirs();
-            Writer writer = new FileWriter(outFile, StandardCharsets.UTF_8);
-            BufferedWriter br =new BufferedWriter(writer);
-            for (int i = 0;i<Entity.toto.size(); i++){
-                Entity.toto.get(i).run();
-                if ( Entity.toto.get(i).getCovid() == 1 || Entity.toto.get(i).getCovid()==2){
+            Writer writer = new FileWriter(outFile, StandardCharsets.UTF_8);// on initialise la fileWriter
+            BufferedWriter br =new BufferedWriter(writer);// on crée un Writer
+            for (int i = 0;i<Entity.toto.size(); i++){// on teste pour chaque agent
+                Entity.toto.get(i).run();// on lance la methode run de chaque agent
+                if ( Entity.toto.get(i).getCovid() == 1){// on vérifie si le personnage a le COVID
                     nbCovid ++;
                 }
-                if (Entity.toto.get(i).getCovid()==2) {
-                    nbVariant++;
-                }
-                label.setText("Nombre covid total : "+ nbCovid);
+                label.setText("Nombre covid total : "+ nbCovid);// on actualise les labels de la fenêtre de jeu
                 label3.setText("  Nombre Non Covid :  "+ (Entity.toto.size()- nbCovid));
-                br.write(nbCovid+" "+nbVariant+" "+(Entity.toto.size()- nbCovid));
-                br.newLine();
+                br.write(nbCovid+" "+(Entity.toto.size()- nbCovid));// on écrit dans le fichier les données relatives au covid
+                br.newLine();// on passe à la ligne suivante
                 br.flush();
 
 
             }
 
-            //System.out.println("Nombre covid total : "+ nbCovid +" Nombre de covid variant "+nbVariant+ "  Nombre Non Covid :  "+ (Entity.toto.size()- nbCovid));
-            cChecker.checkStatut();
+            cChecker.checkStatut();// on lance la methode check statut
         }
 
     }

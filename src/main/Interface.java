@@ -8,7 +8,7 @@ import java.awt.event.*;
 public class Interface {
 
     public static void start(){
-        JFrame window = new JFrame();
+        JFrame window = new JFrame();//on crée plusieur fenêtre et plusieur panel
         JFrame windowSlider = new JFrame();
         JFrame windowSliderFPS = new JFrame();
         JPanel pSetup = new JPanel();
@@ -16,22 +16,22 @@ public class Interface {
         JPanel pSetFPS = new JPanel();
 
 
-        JButton btn=new JButton("Lancer la simulation");
+        JButton btn=new JButton("Lancer la simulation");//on crée des boutons
         JButton btnpause=new JButton("pause");
 
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Facon de fermer la fenetre
+        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Facon de fermer les fenetre
         windowSlider.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         windowSliderFPS.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         window.setResizable(false); //On bloque la redimension
-        window.setTitle("My Project");
+        window.setTitle("Projet SMA");
 
-        GamePanel gamePanel = new GamePanel();
+        GamePanel gamePanel = new GamePanel();//on initialise le gamepanel
 
 
-        pSetup.add(gamePanel.slider);
+        pSetup.add(gamePanel.slider);//on ajoute les Sliders et les labels a la fenêtre
         pSetup.add(gamePanel.label4);
-        gamePanel.slider.setPaintTrack(true);
+        gamePanel.slider.setPaintTrack(true);// on initialise les attributs du slider
         gamePanel.slider.setPaintTicks(true);
         gamePanel.slider.setPaintLabels(true);
         gamePanel.slider.setMajorTickSpacing(25);
@@ -47,7 +47,6 @@ public class Interface {
 
         pSetup.add(gamePanel.slider3);
         pSetup.add(gamePanel.label6);
-
         gamePanel.slider3.setPaintTrack(true);
         gamePanel.slider3.setPaintTicks(true);
         gamePanel.slider3.setPaintLabels(true);
@@ -64,38 +63,40 @@ public class Interface {
         gamePanel.sliderSetFPS.setMajorTickSpacing(50);
         gamePanel.sliderSetFPS.setMinorTickSpacing(25);
 
-        windowSlider.add(pSetup);
-        windowSliderFPS.add(pSetFPS);
-
-        pGame.add(gamePanel.label);
-        pGame.add(gamePanel.label3);
-        gamePanel.label.setForeground(Color.RED);
-        gamePanel.label3.setForeground(Color.RED);
-        pGame.add(btnpause);
-        pGame.add(gamePanel);
-        window.add(pGame);
-        window.pack();
-        gamePanel.label4.setText("nombre de medecin (bleu) : " + gamePanel.slider.getValue());
+        gamePanel.label4.setText("nombre de medecin (bleu) : " + gamePanel.slider.getValue());// on initialise le texte de chaque label
         gamePanel.label5.setText("nombre patient (noir) : " + gamePanel.slider2.getValue());
         gamePanel.label6.setText("nombre visiteur (gris) :  " + gamePanel.slider3.getValue());
-
         gamePanel.labelSetFPS.setText("nombre de FPS (vitesse) :  " + gamePanel.sliderSetFPS.getValue());
 
-        //gamePanel.labelCovidMedecin.setText("medecin ayant de base :  " + gamePanel.sliderCovidMedecin.getValue());
+        windowSlider.add(pSetup);//on ajoute les panels aux fenêtres de paramétrage
+        windowSliderFPS.add(pSetFPS);
 
-        windowSliderFPS.setSize(210,150);
-        windowSlider.setSize(250, 300);
+        pGame.add(gamePanel.label);// on ajoute les labels au panel de jeux
+        pGame.add(gamePanel.label3);
+        gamePanel.label.setForeground(Color.RED);//on colore les labels
+        gamePanel.label3.setForeground(Color.RED);
+        pGame.add(btnpause);// on ajoute le bouton pause au panel de jeu
+        pGame.add(gamePanel);// on ajoute le jeu au panel de jeu
+        window.add(pGame);//on ajoute le panel de jeu a la fenêtre de jeu
+        window.pack();
+
+        windowSliderFPS.setSize(210,100);// on définit la taille de chaque fenêtre
+        windowSlider.setSize(250, 250);
         window.setSize(1210,1000);
 
-        window.setLocationRelativeTo(null); // affiche la fenetre au milieu
+        windowSlider.setUndecorated(true);// on supprime les bordures des fenêtres de paramétrage
+        windowSliderFPS.setUndecorated(true);
+
+        windowSlider.setLocationRelativeTo(null);// affiche la fenetre au milieu
+        window.setLocation(200,0); // on définit la position des fenêtres
+        windowSliderFPS.setLocation(0,400);
+
+        windowSlider.setVisible(true);//on rend la fenêtre visible de paramétrage
 
 
-        windowSlider.setVisible(true);
-
-
-        btnpause.addActionListener(new ActionListener() {
+        btnpause.addActionListener(new ActionListener() {//on crée l'action qu'exécute le bouton quand on appuie
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {//le bouton passe de pause a play quand on appuie dessus
                 if (gamePanel.pause) {
                     gamePanel.pause = false;
                     btnpause.setText("pause");
@@ -106,21 +107,21 @@ public class Interface {
                 }
             }
         });
-        btn.addActionListener(new ActionListener() {
+        btn.addActionListener(new ActionListener() {//on crée l'action qu'exécute le bouton quand on appuie
             @Override
-            public void actionPerformed(ActionEvent e) {
-                window.setVisible(true); //La rendre visible
+            public void actionPerformed(ActionEvent e) {// lance le jeu
+                window.setVisible(true);
                 windowSliderFPS.setVisible(true);
                 windowSlider.setVisible(false);
-                gamePanel.setupGame();
-                gamePanel.startGameThread();
+                gamePanel.setupGame();// actualise les parametres de départ
+                gamePanel.startGameThread();// lance le Thread
             }
         });
-        gamePanel.slider.addChangeListener(new ChangeListener() {
+        gamePanel.slider.addChangeListener(new ChangeListener() {//on crée l'action qu'exécute le slider quand on le bouge
             @Override
             public void stateChanged(ChangeEvent e) {
                 gamePanel.label4.setText("nombre de medecin (bleu) : " + gamePanel.slider.getValue());
-
+                //le texte du label s'actualise
             }
         });
         gamePanel.slider2.addChangeListener(new ChangeListener() {
