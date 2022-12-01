@@ -21,7 +21,7 @@ public class GamePanel extends JPanel implements Runnable{ //Ecran de jeu
     public JSlider slider2 = new JSlider(0,100,15);
     public JSlider slider3 = new JSlider(0,100,15);
 
-    public JSlider sliderSetFPS = new JSlider(0,300,60);
+    public JSlider sliderSetFPS = new JSlider(1,300,60);
 
 
 
@@ -50,7 +50,6 @@ public class GamePanel extends JPanel implements Runnable{ //Ecran de jeu
     public StatutChecker cChecker = new StatutChecker(this);
     Thread gameThread; //Il gère le temps dans le jeu, et donc fait tourner le programme
 
-    public Deplacement depla = new Deplacement(this);
     Monde monde = new Monde(this);
 
     public GamePanel(){// on crée le gamepanel
