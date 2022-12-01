@@ -37,7 +37,7 @@ public class Visiteur extends Entity{
 
 
     public int[] choixLieu() {
-        // statut 1 : Va à l'accueil et demande la chambre du patient, s'asseoit à l'accueil si indisponible
+        // statut 1 : Va à l'accueil et demande la chambre du patient, s'assoit à l'accueil si indisponible
         // statut 2 : Si le médecin arrive, va au siège visiteur de la chambre
         // statut 5 : Patiente
         // statut 3 : Part de l'hopital
