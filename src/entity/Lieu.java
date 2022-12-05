@@ -7,7 +7,7 @@ public class Lieu {
 
     public int[] sorti() {
         lieu[0]=5;
-        lieu[1]=1;
+        lieu[1]=3;
         return lieu;
     }
     public int[] accueil() {

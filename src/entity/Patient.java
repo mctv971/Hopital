@@ -90,7 +90,7 @@ public class Patient extends Entity{
         }
         if (statut == 8){
             statut =1;
-            setPositionX(119);
+            setPositionX(110);
             setPositionY(10);
 
             double k=Math.random()*10 ; // Le nouveau patient à 7/10 chance de revenir sans le covid

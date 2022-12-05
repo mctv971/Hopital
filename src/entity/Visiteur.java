@@ -104,7 +104,7 @@ public class Visiteur extends Entity{
         }
         if (statut == 4){
             statut =1;
-            setPositionX(1);
+            setPositionX(5);
             setPositionY(68);
 
             double k=Math.random()*10 ;

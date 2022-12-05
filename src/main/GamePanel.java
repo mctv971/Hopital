@@ -43,6 +43,7 @@ public class GamePanel extends JPanel implements Runnable{ //Ecran de jeu
     public int[] nbChambreRea = new int[15];
     public int[] nbLitMedecin = new int[50];
     public int[] nbSiegeVisiteur = new int[60];
+    public int[][] mapCoverage = new int[120][81];
 
     //FPS
     int FPS;
@@ -134,10 +135,18 @@ public class GamePanel extends JPanel implements Runnable{ //Ecran de jeu
             outFile.getParentFile().mkdirs();
             Writer writer = new FileWriter(outFile, StandardCharsets.UTF_8);// on initialise la fileWriter
             BufferedWriter br =new BufferedWriter(writer);// on crée un Writer
-            for (int i = 0;i<Entity.toto.size(); i++){// on teste pour chaque agent
-                Entity.toto.get(i).run();// on lance la methode run de chaque agent
-                if ( Entity.toto.get(i).getCovid() == 1){// on vérifie si le personnage a le COVID
-                    nbCovid ++;
+            for (int i = 0;i<Entity.toto.size(); i++){
+                if (Entity.toto.get(i).temps_dodo == Entity.toto.get(i).compteur_dodo) { // on teste pour chaque agent
+                    Entity.toto.get(i).run();//on lance la methode run de chaque agent
+                    if ( Entity.toto.get(i).getCovid() == 1 || Entity.toto.get(i).getCovid()==2){// on vérifie si le personnage a le COVID
+                        nbCovid ++;
+                    }
+                    if (Entity.toto.get(i).getCovid()==2) {
+                        nbVariant++;
+                    }
+                }
+                else{
+                    Entity.toto.get(i).compteur_dodo+=1;
                 }
                 label.setText("Nombre covid total : "+ nbCovid);// on actualise les labels de la fenêtre de jeu
                 label3.setText("  Nombre Non Covid :  "+ (Entity.toto.size()- nbCovid));

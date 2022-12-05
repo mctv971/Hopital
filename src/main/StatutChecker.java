@@ -2,7 +2,7 @@ package main;
 
 import entity.Entity;
 import entity.Lieu;
-//La classe StatutChecker va permettre de rassembler le mécanisme de transmission du covid ainsi que celui des collisions
+
 public class StatutChecker {
     GamePanel gp;
     Lieu lieu = new Lieu();
@@ -19,7 +19,7 @@ public class StatutChecker {
                 if (j==i){
                     continue;
                 }
-                // Création des conditions obligatoires pour la transmission du covid ou pour les collsions
+
                 if (Entity.toto.get(i)!=null && Entity.toto.get(j)!=null) {
                     int positionx1 = (int)Math.round(Entity.toto.get(j).getPositionX());
                     int positionx2 =(int)Math.round(Entity.toto.get(i).getPositionX());
@@ -47,9 +47,6 @@ public class StatutChecker {
                     Entity perso1 = Entity.toto.get(i);
                     Entity perso2 = Entity.toto.get(j);
 
-                    // C'est ici que se fait la transmission du covid, avec l'utilisation de l'âge,
-                    // du taut de contamination ainsi que de la défense imunitaire
-
                     if (c1 || c2 || c3 || c4 || c5 || c10 || c11 || c12 || c13){
                         if ((c7 && c8) || (c8 && c9) || (c7 && c72) ){
                             if (patient.getCovid() == 1 && patient.tauxContamination >= visiteur.defenseImun) {
@@ -64,7 +61,7 @@ public class StatutChecker {
                         }
                     }
 
-                    // Nous somme partie du principe que les médecins ne pouvaient pas transmettre le covid à d'autre médecin ( masque, gant ...)
+
 
 
 
@@ -152,56 +149,7 @@ public class StatutChecker {
 
                         }
 
-
-
-                        if (!perso1.pause && !perso2.pause && !perso1.assis &&  !perso2.assis)  {
-                            if (c1 && perso1.getDirection() == perso2.getDirection() || perso1.getDirection() == "start" || perso2.getDirection() == "start" ){
-                                perso1.pause = true;
-                                perso2.pause =false;
-                            }
-                            else {
-
-
-                                if(c2 || c3){
-                                    if (perso1.getDirection() == "down" && perso2.getDirection() == "up" ||
-                                            perso1.getDirection() == "left" && perso2.getDirection() == "right"){
-                                        if (depla.isValid(perso1,(int)perso1.getPositionX()+1,(int)perso1.getPositionY())){
-                                            perso1.setPositionX((int)perso1.getPositionX()+1);
-                                        }
-                                        else if (depla.isValid(perso1,(int)perso1.getPositionX()-1,(int)perso1.getPositionY())){
-                                            perso1.setPositionX((int)perso1.getPositionX()-1);
-                                        }
-                                        else {
-                                            perso1.pause = true;
-                                            perso2.pause = true;
-                                        }
-
-                                    }
-
-
-                                }
-                                if(c4 || c5){
-                                    if (perso1.getDirection() == "left" && perso2.getDirection() == "right") {
-                                        if (depla.isValid(perso1,(int)perso1.getPositionX(),(int)perso1.getPositionY()+1)){
-                                            perso1.setPositionY((int)perso1.getPositionY()+1);
-                                        }
-                                        else if (depla.isValid(perso1,(int)perso1.getPositionX(),(int)perso1.getPositionY()-1)){
-                                            perso1.setPositionY((int)perso1.getPositionY()-1);
-                                        }
-                                        else {
-                                            perso1.pause = true;
-                                            perso2.pause = true;
-                                        }
-                                    }
-                                }
-                            }
-
-                        }
-                        if (perso1.pause && perso2.pause){
-                            perso1.setPositionX((int)perso1.getPositionX()+1);
-                        }
                     }
-
 
 
 

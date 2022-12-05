@@ -22,26 +22,33 @@ public class Entity extends Thread{
     public BufferedImage up1,up2,down1,down2,left1,left2,right1,right2;
     private String direction;
     GamePanel gp;
-    Deplacement depla = new Deplacement(gp);
+    Deplacement depla;
     public int i;
     double j = 0;
     public int finishX;
     public int finishY;
+    public int interX = 0;
+    public int interY = 0;
     public boolean arrive;
-    int[][][] liste_depla;
+    public int[][][] liste_depla;
     public boolean pause = false;
     public int compteur_stop =0;
-
-    int compteur_erreur =0;
-    int x_erreur;
-    int y_erreur;
     double age = 10 + Math.random()*80;
     public double tauxContamination = Math.random()*100 ;
     public double defenseImun = defenseImun();
     public boolean assis =false;
     int spawn = (int)Math.random()*10;
-
+    public int x; public int y; int stockX; int stockY;
+    public static int dodo = 0;
+    public final int temps_dodo;
+    public int compteur_dodo=0;
+    public int compteur_erreur =0;
+    public int x_erreur =0;
+    public int y_erreur=0;
     public Entity(GamePanel gp, int positionX, int positionY, int covid) {
+        temps_dodo=dodo;
+        dodo +=30;
+
         this.gp = gp;
         this.setPositionX(positionX);
         this.setPositionY(positionY);
@@ -52,9 +59,9 @@ public class Entity extends Thread{
         i =0;
         statut = 1;
         arrive = true;
-        
+        depla = new Deplacement(gp);
         // COORDONNEES DE DEPART
-        
+
         if(this.getClass().getSimpleName().equalsIgnoreCase("Medecin")){
             finishX = 66; finishY = 49;
         }
@@ -81,8 +88,8 @@ public class Entity extends Thread{
     }
 
     public int getWorldX() {
-            return (int)(gp.tileSize * getPositionX());
-        }
+        return (int)(gp.tileSize * getPositionX());
+    }
 
     public int getWorldY() {
         return (int)(gp.tileSize * getPositionY());
@@ -125,8 +132,10 @@ public class Entity extends Thread{
         return choix;
     }
     public void getChoixdepla() { // DONNE LA DIRECTION QUE DOIT PRENDRE LE PERSONNAGE
-        int x = (int)this.getPositionX();
-        int y = (int)this.getPositionY();
+        x = (int)getPositionX();
+        y = (int)getPositionY();
+
+
         if (arrive && finishX != 0 && finishY!=0 ){ // CALCUL UN NOUVEL ITINERAIRE SI IL CHANGE DE STATUT
 
 
@@ -201,65 +210,77 @@ public class Entity extends Thread{
 
                 }
             }
+            depla.checkDeplacement(this);
         }
+
 
     }
 
     public void run() {
         try {
 
-
             // modification position player
             if (j == 0 && !pause) {
                 this.getChoixdepla();
             }
 
-            x_erreur = (int)this.getPositionX();
-            y_erreur =(int)this.getPositionY();
-            if (pause){
-                direction = "start";
-            }
-            
+
+
             // MODIFIE LA POSITION DU JOUEUR
 
 
-            switch (direction){
-                case "start":
+            if (!pause) {
+                switch (direction){
+                    case "start":
 
-                    break;
-                case "up":
-                    positionY -= speed;
-
-
-                    break;
-                case "down":
-                    positionY += speed;
+                        break;
+                    case "up":
+                        positionY -= speed;
 
 
+                        break;
+                    case "down":
+                        positionY += speed;
 
-                    break;
-                case "left":
-                    positionX -= speed;
 
 
-                    break;
-                case "right":
+                        break;
+                    case "left":
+                        positionX -= speed;
 
-                    positionX += speed;
 
-                    break;
+                        break;
+                    case "right":
+
+                        positionX += speed;
+
+                        break;
+                }
+
+                if (j==0){
+                    gp.mapCoverage[(int)positionX][(int)positionY] = 1;
+                    gp.mapCoverage[stockX][stockY] = 0;
+                    stockX = (int)positionX;
+                    stockY = (int)positionY;
+
+
+                }
+                j += speed;
+
+                if ((int) j==1){  // PERMET DE DEPLACER LE JOUEUR SUIVANT LES PIXELS
+                    positionX = Math.round(positionX);
+                    positionY = Math.round(positionY);
+                    j = 0;
+                }
             }
-            j += speed;
-
-            if ((int) j==1){  // PERMET DE DEPLACER LE JOUEUR SUIVANT LES PIXELS
-                positionX = Math.round(positionX);
-                positionX = Math.round(positionX);
-                positionY = Math.round(positionY);
-                j = 0;
+            if (pause){
+                direction ="start";
+                pause = false;
             }
 
 
-            pause = false;
+
+
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -272,31 +293,31 @@ public class Entity extends Thread{
         switch (direction) {
             case "start":
                 image = down1;
-                if (this.getCovid()==1){
+                if (this.getCovid()==1|| this.getCovid()==2){
                     image =down2;
                 }
             case "up":
                 image = up1;
-                if (this.getCovid()==1){
+                if (this.getCovid()==1 || this.getCovid()== 2){
                     image =up2;
                 }
                 break;
             case "down":
                 image = down1;
-                if (this.getCovid()==1){
+                if (this.getCovid()==1|| this.getCovid()== 2){
                     image =down2;
                 }
                 break;
             case "left":
 
                 image = left1;
-                if (this.getCovid()==1){
+                if (this.getCovid()==1|| this.getCovid()==2){
                     image =left2;
                 }
                 break;
             case "right":
                 image = right1;
-                if (this.getCovid()==1){
+                if (this.getCovid()==1|| this.getCovid()==2){
                     image =right2;
                 }
                 break;
@@ -310,6 +331,7 @@ public class Entity extends Thread{
     // Un âge est attribué à chaque personnage (entre 10 et 90 ans)
     // On donne une défense immunitaire pour chaque tranche d'âge, elle-même divisée par 2 si le patient est malade
     // Or s'il est à l'hôpital, c'est qu'il est malade.
+
     public double defenseImun (){
 
         if(10<= age && age<30) {
